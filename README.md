@@ -1,7 +1,9 @@
-TablePager
+FlexLabs.Util.Web
 ==========
 
-A NuGet extension that helps automate and simplify paging for MVC sites
+A NuGet extension that helps automate and simplify some common tasks in MVC projects.
+
+Contains the TablePager and some new html editor extensions
 
 ---
 

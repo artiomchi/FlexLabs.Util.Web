@@ -8,7 +8,7 @@ namespace FlexLabs.Web.Html
 {
     public static class EditorHelpers
     {
-        public static MvcHtmlString AutoEditorFieldFor<TModel, TValue>(this HtmlHelper<TModel> html, Expression<Func<TModel, TValue>> expression, Object additionalViewData = null)
+        public static MvcHtmlString AutoEditorFieldFor<TModel, TValue>(this HtmlHelper<TModel> html, Expression<Func<TModel, TValue>> expression, String templateName = null, Object additionalViewData = null)
         {
             var label = html.LabelFor(expression);
             var validation = html.ValidationMessageFor(expression);
@@ -20,10 +20,8 @@ namespace FlexLabs.Web.Html
                 editor = html.AutoDropDownListFor(expression);
             if (editor == null && ExpressionHelper.GetAttribute<AutoTextBoxAttribute>(member) != null)
                 editor = html.AutoTextBoxFor(expression);
-            if (editor == null && ExpressionHelper.GetAttribute<AutoTextAreaAttribute>(member) != null)
-                editor = html.AutoTextAreaFor(expression);
             if (editor == null)
-                editor = html.EditorFor(expression, additionalViewData);
+                editor = html.EditorFor(expression, templateName, additionalViewData);
 
             return MvcHtmlString.Create(label.ToString() + editor.ToString() + validation.ToString());
         }
@@ -61,19 +59,6 @@ namespace FlexLabs.Web.Html
                 attributes["type"] = attr.Type;
 
             return html.TextBoxFor(expression, attr.Format, attributes);
-        }
-
-        public static MvcHtmlString AutoTextAreaFor<TModel, TValue>(this HtmlHelper<TModel> html, Expression<Func<TModel, TValue>> expression, Object htmlAttributes = null)
-        {
-            var member = ExpressionHelper.GetMemberInfo(expression);
-            var attr = ExpressionHelper.GetAttribute<AutoTextAreaAttribute>(member);
-            if (attr == null)
-                throw new InvalidOperationException("Missing AutoTextAreaAttribute on property");
-
-            if (!attr.Rows.HasValue && !attr.Columns.HasValue)
-                return html.TextAreaFor(expression, htmlAttributes);
-
-            return html.TextAreaFor(expression, attr.Rows ?? 4, attr.Columns ?? 20, htmlAttributes);
         }
     }
 }
