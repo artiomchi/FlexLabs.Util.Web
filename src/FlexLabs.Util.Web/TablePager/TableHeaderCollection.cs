@@ -8,7 +8,6 @@ namespace FlexLabs.Web.TablePager
     {
         private readonly IList<ITableHeader> _headers = new List<ITableHeader>();
 
-
         public int Count { get { return _headers.Count; } }
 
         public bool IsReadOnly { get { return false; } }
@@ -18,14 +17,9 @@ namespace FlexLabs.Web.TablePager
             _headers.Add(item);
         }
 
-        public void Add(String title)
+        public void Add(String title, Object value = null, String tooltip = null)
         {
-            _headers.Add(new TableHeader { Title = title });
-        }
-
-        public void Add(String title, Object value)
-        {
-            _headers.Add(new TableHeader { Title = title, Value = value });
+            _headers.Add(new TableHeader { Title = title, Value = value, ToolTip = tooltip });
         }
 
         public void Clear()
