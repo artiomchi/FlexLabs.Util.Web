@@ -1,0 +1,23 @@
+﻿{
+  "version": "1.0.0-*",
+  "description": "FlexLabs.Util.Web.Tests Class Library",
+  "authors": [ "artio" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
+
+  "dependencies": {
+    "FlexLabs.Util.Web": "",
+    "xunit": "2.1.0",
+    "xunit.runner.dnx": "2.1.0-rc1-*",
+    "xunit.runner.visualstudio": "2.1.0"
+  },
+
+  "commands": {
+    "test": "xunit.runner.dnx"
+  },
+
+  "frameworks": {
+    "dnx451": { }
+  }
+}

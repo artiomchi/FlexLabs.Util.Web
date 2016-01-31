@@ -49,6 +49,7 @@ namespace FlexLabs.Web.TablePager
 
 #line 7 "..\..\TablePager.cshtml"
 
+        [Obsolete("This method is obsolete. Use Html.Pager() instead")]
         public static HelperResult Pager<T>(IPagedList<T> pagedList, String label = "Page: ")
         {
             if (pagedList.PageCount == 0)
@@ -62,6 +63,7 @@ namespace FlexLabs.Web.TablePager
 #line default
 #line hidden
 
+        [Obsolete("This method is obsolete. Use Html.Pager() instead")]
 #line 17 "..\..\TablePager.cshtml"
         public static System.Web.WebPages.HelperResult Pager(PagedListData model, String label)
         {
@@ -246,6 +248,7 @@ namespace FlexLabs.Web.TablePager
 #line default
 #line hidden
 
+        [Obsolete("This method is obsolete. Use Html.PageSizer() instead")]
 #line 40 "..\..\TablePager.cshtml"
         public static System.Web.WebPages.HelperResult PageSizer(System.Web.Mvc.HtmlHelper html, String label = "Page Size:", Int32[] pageSizes = null, Int32? currentSize = null)
         {
@@ -308,6 +311,7 @@ namespace FlexLabs.Web.TablePager
 #line default
 #line hidden
 
+        [Obsolete("This method is obsolete. Use Html.Header() instead")]
 #line 46 "..\..\TablePager.cshtml"
         public static System.Web.WebPages.HelperResult Header(IEnumerable<ITableHeader> headers)
         {
@@ -342,6 +346,7 @@ namespace FlexLabs.Web.TablePager
 #line default
 #line hidden
 
+        [Obsolete("This method is obsolete. Use Html.Header() instead")]
 #line 49 "..\..\TablePager.cshtml"
         public static System.Web.WebPages.HelperResult Header(IEnumerable<ITableHeader>[] headersSet)
         {
@@ -542,6 +547,7 @@ namespace FlexLabs.Web.TablePager
 #line default
 #line hidden
 
+        [Obsolete("This method is obsolete. Use Html.EnableFormSorting() instead")]
 #line 72 "..\..\TablePager.cshtml"
         public static System.Web.WebPages.HelperResult FormHidden(ITableModel model)
         {

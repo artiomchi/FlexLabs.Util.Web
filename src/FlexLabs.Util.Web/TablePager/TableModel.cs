@@ -59,6 +59,7 @@ namespace FlexLabs.Web.TablePager
         object ITableModel.SortBy { get { return SortBy; } set { SortBy = (TSorter?)value; } }
 
         public IPagedList<TModel> PageItems;
+        IPagedList ITableModel.PageItems { get { return PageItems; } }
 
         public abstract TModel TranslateItem(TSource item);
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PagedList;
+using System;
 
 namespace FlexLabs.Web.TablePager
 {
@@ -8,5 +9,8 @@ namespace FlexLabs.Web.TablePager
         Object SortBy { get; set; }
         Boolean? SortAsc { get; set; }
         Int64? FirstItemID { get; set; }
+        Int32? PageSize { get; set; }
+
+        IPagedList PageItems { get; }
     }
 }
