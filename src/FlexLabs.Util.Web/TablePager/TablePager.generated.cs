@@ -311,7 +311,7 @@ namespace FlexLabs.Web.TablePager
 #line default
 #line hidden
 
-        [Obsolete("This method is obsolete. Use Html.Header() instead")]
+        [Obsolete("This method is obsolete. Use Html.TableHeader() instead")]
 #line 46 "..\..\TablePager.cshtml"
         public static System.Web.WebPages.HelperResult Header(IEnumerable<ITableHeader> headers)
         {
@@ -346,7 +346,7 @@ namespace FlexLabs.Web.TablePager
 #line default
 #line hidden
 
-        [Obsolete("This method is obsolete. Use Html.Header() instead")]
+        [Obsolete("This method is obsolete. Use Html.TableHeader() instead")]
 #line 49 "..\..\TablePager.cshtml"
         public static System.Web.WebPages.HelperResult Header(IEnumerable<ITableHeader>[] headersSet)
         {
