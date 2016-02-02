@@ -10,5 +10,6 @@ namespace FlexLabs.Web.TablePager
         public String CssClass { get; set; }
         public Int32? ColSpan { get; set; }
         public Int32? RowSpan { get; set; }
+        public Boolean IsRendered { get; set; } = true;
     }
 }

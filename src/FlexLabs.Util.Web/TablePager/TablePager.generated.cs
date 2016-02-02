@@ -386,7 +386,7 @@ namespace FlexLabs.Web.TablePager
 #line hidden
 
 #line 53 "..\..\TablePager.cshtml"
-                    foreach (var iheader in headers)
+                    foreach (var iheader in headers.Where(h => h.IsRendered))
                     {
 
 

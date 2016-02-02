@@ -20,6 +20,8 @@ namespace FlexLabs.Web.Html
                 var rowTag = new TagBuilder("tr");
                 foreach (var iheader in headers)
                 {
+                    if (!iheader.IsRendered) continue;
+
                     var thTag = new TagBuilder("th");
                     if (iheader.CssClass != null)
                         thTag.AddCssClass(iheader.CssClass);

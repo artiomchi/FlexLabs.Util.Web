@@ -17,6 +17,11 @@ namespace FlexLabs.Web.TablePager
             _headers.Add(item);
         }
 
+        public void Add(Boolean isRendered, String title, Object value = null, String tooltip = null)
+        {
+            _headers.Add(new TableHeader { Title = title, Value = value, ToolTip = tooltip, IsRendered = isRendered });
+        }
+
         public void Add(String title, Object value = null, String tooltip = null)
         {
             _headers.Add(new TableHeader { Title = title, Value = value, ToolTip = tooltip });
