@@ -8,7 +8,7 @@ namespace FlexLabs.Web.Html
 {
     public static class EditorHelpers
     {
-        public static MvcHtmlString AutoEditorFieldFor<TModel, TValue>(this HtmlHelper<TModel> html, Expression<Func<TModel, TValue>> expression, String templateName = null, Object additionalViewData = null)
+        public static MvcHtmlString AutoEditorFieldFor<TModel, TValue>(this HtmlHelper<TModel> html, Expression<Func<TModel, TValue>> expression, String templateName = null, Object additionalViewData = null, Object htmlAttributes = null)
         {
             var label = html.LabelFor(expression);
             var validation = html.ValidationMessageFor(expression);
@@ -17,9 +17,11 @@ namespace FlexLabs.Web.Html
             var member = ExpressionHelper.GetMemberInfo(expression);
 
             if (editor == null && ExpressionHelper.GetAttribute<AutoDropDownListAttribute>(member) != null)
-                editor = html.AutoDropDownListFor(expression);
+                editor = html.AutoDropDownListFor(expression, htmlAttributes);
             if (editor == null && ExpressionHelper.GetAttribute<AutoTextBoxAttribute>(member) != null)
-                editor = html.AutoTextBoxFor(expression);
+                editor = html.AutoTextBoxFor(expression, htmlAttributes);
+            if (editor == null && ExpressionHelper.GetAttribute<AutoCheckBoxAttribute>(member) != null && typeof(TValue) == typeof(Boolean))
+                editor = html.AutoCheckBoxFor(expression as Expression<Func<TModel, Boolean>>, htmlAttributes);
             if (editor == null)
                 editor = html.EditorFor(expression, templateName, additionalViewData);
 
@@ -59,6 +61,11 @@ namespace FlexLabs.Web.Html
                 attributes["type"] = attr.Type;
 
             return html.TextBoxFor(expression, attr.Format, attributes);
+        }
+
+        public static MvcHtmlString AutoCheckBoxFor<TModel>(this HtmlHelper<TModel> html, Expression<Func<TModel, Boolean>> expression, Object htmlAttributes = null)
+        {
+            return html.CheckBoxFor(expression, htmlAttributes);
         }
     }
 }

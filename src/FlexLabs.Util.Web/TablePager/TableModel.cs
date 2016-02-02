@@ -96,8 +96,8 @@ namespace FlexLabs.Web.TablePager
             if (PageItems.TotalItemCount > 0 && (FirstID32Selector != null || FirstID64Selector != null))
             {
                 FirstItemID = FirstID64Selector != null
-                    ? items.Select(FirstID64Selector).FirstOrDefault()
-                    : items.Select(FirstID32Selector).FirstOrDefault();
+                    ? dataSet.Select(FirstID64Selector).FirstOrDefault()
+                    : dataSet.Select(FirstID32Selector).FirstOrDefault();
             }
         }
 
