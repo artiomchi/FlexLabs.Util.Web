@@ -30,8 +30,8 @@
 
   "scripts": {
     "postbuild": [
-      "%project:Directory%\\..\\..\\..\\signtool.exe sign /n \"Artiom Chilaru\" /t \"http://timestamp.digicert.com\" /a \"%project:Directory%\\..\\..\\artifacts\\bin\\%project:Name%\\Release\\dnx451\\*.dll",
-      "%project:Directory%\\..\\..\\..\\signtool.exe sign /n \"Artiom Chilaru\" /t \"http://timestamp.digicert.com\" /a \"%project:Directory%\\..\\..\\artifacts\\bin\\%project:Name%\\Release\\net45\\*.dll"
+      "%project:Directory%\\..\\..\\..\\signtool.exe sign /n \"Artiom Chilaru\" /tr \"http://timestamp.digicert.com\" /fd sha256 /td sha256 /a \"%project:Directory%\\..\\..\\artifacts\\bin\\%project:Name%\\Release\\dnx451\\*.dll",
+      "%project:Directory%\\..\\..\\..\\signtool.exe sign /n \"Artiom Chilaru\" /tr \"http://timestamp.digicert.com\" /fd sha256 /td sha256 /a \"%project:Directory%\\..\\..\\artifacts\\bin\\%project:Name%\\Release\\net45\\*.dll"
     ]
   }
 }
