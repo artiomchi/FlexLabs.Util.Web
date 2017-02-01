@@ -79,7 +79,7 @@ namespace FlexLabs.Web.TablePager
                 }
                 else
                 {
-                    dataSet = items.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
+                    dataSet = items.AsQueryable<TSource>().Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
                 }
             }
             else
