@@ -1,11 +1,8 @@
-﻿using PagedList;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Web.Mvc;
 
-namespace FlexLabs.Web.TablePager
+namespace FlexLabs.Util.Web
 {
     public class TableModel
     {
@@ -13,13 +10,13 @@ namespace FlexLabs.Web.TablePager
         public static Int32 DefaultPageRange = 10;
         public static Int32[] DefaultPageSizes = new[] { 10, 25, 50, 100 };
 
-        internal static IEnumerable<SelectListItem> GetPageSizes(Int32[] pageSizes = null, Int32? currentSize = null)
+        public static IEnumerable<Int32> GetPageSizes(Int32[] pageSizes = null, Int32? currentSize = null)
         {
             if (pageSizes == null)
                 pageSizes = TableModel.DefaultPageSizes;
             if (currentSize.HasValue && !pageSizes.Contains(currentSize.Value))
                 pageSizes = pageSizes.Union(new[] { currentSize.Value }).OrderBy(p => p).ToArray();
-            return pageSizes.Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString(), Selected = i == TableModel.DefaultPageSize });
+            return pageSizes;
         }
     }
 
@@ -35,21 +32,20 @@ namespace FlexLabs.Web.TablePager
         }
     }
 
-    [ModelBinder(typeof(TableModelBinder))]
     public abstract class TableModel<TSorter, TSource, TModel> : TableModel, ITableModel where TSorter : struct
     {
-        public TableModel(TSorter defaultSorter, Boolean defaultAscending, Boolean pagingEnabled = true)
-        {
-            DefaultSortBy = defaultSorter;
-            DefaultSortAsc = defaultAscending;
-            PagingEnabled = pagingEnabled;
-        }
         private readonly TSorter DefaultSortBy;
         private readonly Boolean DefaultSortAsc;
         private readonly Boolean PagingEnabled = true;
         private Func<TSource, Int64> FirstID64Selector = null;
         private Func<TSource, Int32> FirstID32Selector = null;
 
+        public TableModel(TSorter defaultSorter, Boolean defaultAscending, Boolean pagingEnabled = true)
+        {
+            DefaultSortBy = defaultSorter;
+            DefaultSortAsc = defaultAscending;
+            PagingEnabled = pagingEnabled;
+        }
         public TSorter? ChangeSort { get; set; }
         public TSorter? SortBy { get; set; }
         public Boolean? SortAsc { get; set; }
@@ -58,8 +54,8 @@ namespace FlexLabs.Web.TablePager
         public Int64? FirstItemID { get; set; }
         object ITableModel.SortBy { get { return SortBy; } set { SortBy = (TSorter?)value; } }
 
-        public IPagedList<TModel> PageItems;
-        IPagedList ITableModel.PageItems { get { return PageItems; } }
+        public IPagedList<TModel> PageItems { get; private set; }
+        IPagedList ITableModel.PageItems => PageItems;
 
         public abstract TModel TranslateItem(TSource item);
 
@@ -79,7 +75,7 @@ namespace FlexLabs.Web.TablePager
                 }
                 else
                 {
-                    dataSet = items.AsQueryable<TSource>().Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
+                    dataSet = items.AsQueryable().Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
                 }
             }
             else
@@ -89,9 +85,9 @@ namespace FlexLabs.Web.TablePager
             }
 
             if (typeof(TSource) == typeof(TModel))
-                PageItems = new StaticPagedList<TModel>(dataSet.OfType<TModel>(), pageNumber, pageSize, totalItemCount ?? dataSet.Count());
+                PageItems = new PagedList<TModel>(pageNumber, pageSize, dataSet.OfType<TModel>(), totalItemCount ?? dataSet.Count());
             else
-                PageItems = new StaticPagedList<TModel>(dataSet.Select(i => TranslateItem(i)), pageNumber, pageSize, totalItemCount ?? dataSet.Count());
+                PageItems = new PagedList<TModel>(pageNumber, pageSize, dataSet.Select(i => TranslateItem(i)), totalItemCount ?? dataSet.Count());
 
             if (PageItems.TotalItemCount > 0 && (FirstID32Selector != null || FirstID64Selector != null))
             {
@@ -149,7 +145,7 @@ namespace FlexLabs.Web.TablePager
             }
         }
 
-        public TSorter GetSortBy() { return SortBy ?? DefaultSortBy; }
-        public Boolean GetSortAsc() { return SortAsc ?? DefaultSortAsc; }
+        public TSorter GetSortBy() => SortBy ?? DefaultSortBy;
+        public Boolean GetSortAsc() => SortAsc ?? DefaultSortAsc;
     }
 }

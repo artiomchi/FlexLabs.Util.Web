@@ -1,6 +1,7 @@
-﻿using System.Web.Mvc;
+﻿using FlexLabs.Util.Web;
+using System.Web.Mvc;
 
-namespace FlexLabs.Web.TablePager
+namespace FlexLabs.Util.Mvc
 {
     public class TableModelBinder : DefaultModelBinder
     {

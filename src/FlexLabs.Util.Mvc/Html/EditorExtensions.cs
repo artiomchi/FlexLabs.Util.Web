@@ -1,10 +1,11 @@
-﻿using System;
+﻿using FlexLabs.Util.Web;
+using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
 
-namespace FlexLabs.Web.Html
+namespace FlexLabs.Util.Mvc.Html
 {
     public static class EditorHelpers
     {

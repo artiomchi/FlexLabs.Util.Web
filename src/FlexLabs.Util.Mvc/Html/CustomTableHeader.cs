@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web;
 
-namespace FlexLabs.Web.TablePager
+namespace FlexLabs.Util.Mvc.Html
 {
     public class CustomTableHeader : ITableHeader
     {

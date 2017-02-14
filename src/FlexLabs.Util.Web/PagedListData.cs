@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace FlexLabs.Web.TablePager
+namespace FlexLabs.Util.Web
 {
     public class PagedListData
     {

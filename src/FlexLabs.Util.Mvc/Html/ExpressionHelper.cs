@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace FlexLabs.Web.Html
+namespace FlexLabs.Util.Mvc.Html
 {
     internal static class ExpressionHelper
     {
@@ -33,8 +34,8 @@ namespace FlexLabs.Web.Html
             where TAttribute: Attribute
         {
             var attributes = memberInfo.GetCustomAttributes(typeof(TAttribute), false);
-            if (attributes.Length > 0)
-                return attributes[0] as TAttribute;
+            if (attributes.Any())
+                return attributes.First() as TAttribute;
 
             return null;
         }

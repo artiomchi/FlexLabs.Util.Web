@@ -1,8 +1,7 @@
-﻿using FlexLabs.Web.TablePager;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
 
-namespace FlexLabs.Web.Html
+namespace FlexLabs.Util.Mvc.Html
 {
     public static class TableExtensions
     {

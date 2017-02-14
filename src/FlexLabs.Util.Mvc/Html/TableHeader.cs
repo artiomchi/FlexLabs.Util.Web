@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FlexLabs.Web.TablePager
+namespace FlexLabs.Util.Mvc.Html
 {
     public class TableHeader : ITableHeader
     {

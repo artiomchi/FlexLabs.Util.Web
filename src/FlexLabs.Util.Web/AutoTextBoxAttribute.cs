@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FlexLabs.Web
+namespace FlexLabs.Util.Web
 {
     public sealed class AutoTextBoxAttribute : Attribute
     {

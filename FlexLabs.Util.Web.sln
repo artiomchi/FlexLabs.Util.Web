@@ -1,21 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26206.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A2875F06-7319-47E7-910E-02AFDB0926A8}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{353E7ED4-2A91-4875-8F64-4B0CEDA925F8}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{A1A76EFD-F496-4950-9519-3121D04D6938}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{CF42A678-4FFA-47AD-AD55-5CB81D2FB15F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E685C7B6-1D8A-4969-8C53-AF238F7300F8}"
-	ProjectSection(SolutionItems) = preProject
-		global.json = global.json
-		README.md = README.md
-	EndProjectSection
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{AC0AB6DB-8A05-4663-8816-127AA8E292A3}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "FlexLabs.Util.Web", "src\FlexLabs.Util.Web\FlexLabs.Util.Web.xproj", "{819C9A3B-C8FA-42D2-9E4E-209355ED8443}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlexLabs.Util.Web", "src\FlexLabs.Util.Web\FlexLabs.Util.Web.csproj", "{D567670C-82E5-4FAD-8407-551E6396AE53}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "FlexLabs.Util.Web.Tests", "test\FlexLabs.Util.Web.Tests\FlexLabs.Util.Web.Tests.xproj", "{7EA2A423-79BD-4F18-8E5C-F3681A682EF0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlexLabs.Util.Mvc", "src\FlexLabs.Util.Mvc\FlexLabs.Util.Mvc.csproj", "{67488A14-4042-41CA-86E9-9C90DD4CB354}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlexLabs.Util.AspNetCore", "src\FlexLabs.Util.AspNetCore\FlexLabs.Util.AspNetCore.csproj", "{6C257350-A8F3-4D92-ACB2-E9049D247978}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlexLabs.Util.Mvc.Tests", "test\FlexLabs.Util.Mvc.Tests\FlexLabs.Util.Mvc.Tests.csproj", "{0047E4F6-42E8-4516-BAD8-121D4781C088}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,20 +23,30 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{819C9A3B-C8FA-42D2-9E4E-209355ED8443}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{819C9A3B-C8FA-42D2-9E4E-209355ED8443}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{819C9A3B-C8FA-42D2-9E4E-209355ED8443}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{819C9A3B-C8FA-42D2-9E4E-209355ED8443}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7EA2A423-79BD-4F18-8E5C-F3681A682EF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7EA2A423-79BD-4F18-8E5C-F3681A682EF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7EA2A423-79BD-4F18-8E5C-F3681A682EF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7EA2A423-79BD-4F18-8E5C-F3681A682EF0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D567670C-82E5-4FAD-8407-551E6396AE53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D567670C-82E5-4FAD-8407-551E6396AE53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D567670C-82E5-4FAD-8407-551E6396AE53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D567670C-82E5-4FAD-8407-551E6396AE53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67488A14-4042-41CA-86E9-9C90DD4CB354}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67488A14-4042-41CA-86E9-9C90DD4CB354}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67488A14-4042-41CA-86E9-9C90DD4CB354}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67488A14-4042-41CA-86E9-9C90DD4CB354}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C257350-A8F3-4D92-ACB2-E9049D247978}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C257350-A8F3-4D92-ACB2-E9049D247978}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C257350-A8F3-4D92-ACB2-E9049D247978}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C257350-A8F3-4D92-ACB2-E9049D247978}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0047E4F6-42E8-4516-BAD8-121D4781C088}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0047E4F6-42E8-4516-BAD8-121D4781C088}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0047E4F6-42E8-4516-BAD8-121D4781C088}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0047E4F6-42E8-4516-BAD8-121D4781C088}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{819C9A3B-C8FA-42D2-9E4E-209355ED8443} = {A2875F06-7319-47E7-910E-02AFDB0926A8}
-		{7EA2A423-79BD-4F18-8E5C-F3681A682EF0} = {A1A76EFD-F496-4950-9519-3121D04D6938}
+		{D567670C-82E5-4FAD-8407-551E6396AE53} = {CF42A678-4FFA-47AD-AD55-5CB81D2FB15F}
+		{67488A14-4042-41CA-86E9-9C90DD4CB354} = {CF42A678-4FFA-47AD-AD55-5CB81D2FB15F}
+		{6C257350-A8F3-4D92-ACB2-E9049D247978} = {CF42A678-4FFA-47AD-AD55-5CB81D2FB15F}
+		{0047E4F6-42E8-4516-BAD8-121D4781C088} = {AC0AB6DB-8A05-4663-8816-127AA8E292A3}
 	EndGlobalSection
 EndGlobal

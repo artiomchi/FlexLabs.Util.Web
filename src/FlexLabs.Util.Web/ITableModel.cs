@@ -1,7 +1,6 @@
-﻿using PagedList;
-using System;
+﻿using System;
 
-namespace FlexLabs.Web.TablePager
+namespace FlexLabs.Util.Web
 {
     public interface ITableModel
     {

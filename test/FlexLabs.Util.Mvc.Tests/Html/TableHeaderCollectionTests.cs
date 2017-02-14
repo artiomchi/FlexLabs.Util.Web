@@ -1,10 +1,10 @@
-﻿using FlexLabs.Web.TablePager;
+﻿using FlexLabs.Util.Mvc.Html;
 using System;
 using System.Linq;
 using System.Web;
 using Xunit;
 
-namespace FlexLabs.Util.Web.Tests.TablePager
+namespace FlexLabs.Util.Mvc.Tests.Html
 {
     public class TableHeaderCollectionTests
     {

@@ -1,9 +1,10 @@
-﻿using FlexLabs.Web.TablePager;
+﻿using FlexLabs.Util.Web;
 using System;
+using System.Linq;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
 
-namespace FlexLabs.Web.Html
+namespace FlexLabs.Util.Mvc.Html
 {
     public static class PagingExtensions
     {
@@ -46,8 +47,11 @@ namespace FlexLabs.Web.Html
         public static MvcHtmlString PageSizer<TModel>(this HtmlHelper<TModel> html, String lavel = "Page Size: ", Int32[] pageSizes = null, Int32? currentSize = null)
             where TModel : ITableModel
         {
+            var pageSizeItems = TableModel.GetPageSizes(pageSizes, currentSize)
+                .Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString(), Selected = i == (currentSize ?? TableModel.DefaultPageSize) });
+
             var label = html.LabelFor(m => m.PageSize);
-            var editor = html.DropDownListFor(m => m.PageSize, TableModel.GetPageSizes(pageSizes, currentSize), new { onchange = "$(this).closest('form').submit();" });
+            var editor = html.DropDownListFor(m => m.PageSize, pageSizeItems, new { onchange = "$(this).closest('form').submit();" });
             var validation = html.ValidationMessageFor(m => m.PageSize);
 
             return MvcHtmlString.Create(label.ToString() + editor.ToString() + validation.ToString());
