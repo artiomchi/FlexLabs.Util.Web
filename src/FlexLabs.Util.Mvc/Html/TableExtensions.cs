@@ -36,23 +36,17 @@ namespace FlexLabs.Util.Mvc.Html
                     else
                     {
                         var header = iheader as TableHeader;
+                        if (header.ToolTip != null)
+                            thTag.MergeAttribute("title", header.ToolTip);
+
                         if (header.Value != null)
                         {
                             var buttonTag = new TagBuilder("button");
                             buttonTag.MergeAttribute("type", "submit");
                             buttonTag.MergeAttribute("name", "changeSort");
                             buttonTag.MergeAttribute("value", header.Value.ToString());
-                            if (header.ToolTip != null)
-                                buttonTag.MergeAttribute("title", header.ToolTip);
                             buttonTag.SetInnerText(header.Title);
                             thTag.InnerHtml = buttonTag.ToString();
-                        }
-                        else if (header.ToolTip != null)
-                        {
-                            var span = new TagBuilder("span");
-                            span.MergeAttribute("title", header.ToolTip);
-                            span.SetInnerText(header.Title);
-                            thTag.InnerHtml = span.ToString();
                         }
                         else
                         {
