@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FlexLabs.Util.Web
+namespace FlexLabs.Web
 {
     public sealed class AutoCheckBoxAttribute : Attribute
     {

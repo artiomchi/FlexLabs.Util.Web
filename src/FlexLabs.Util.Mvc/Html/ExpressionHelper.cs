@@ -3,7 +3,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace FlexLabs.Util.Mvc.Html
+namespace FlexLabs.Mvc.Html
 {
     internal static class ExpressionHelper
     {

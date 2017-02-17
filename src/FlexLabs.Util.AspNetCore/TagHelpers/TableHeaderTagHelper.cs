@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using System.Threading.Tasks;
 
-namespace FlexLabs.Util.AspNetCore.TagHelpers
+namespace FlexLabs.AspNetCore.TagHelpers
 {
     [HtmlTargetElement("th", Attributes = SortByAttribute, TagStructure = TagStructure.NormalOrSelfClosing)]
     public class TableHeaderTagHelper : TagHelper

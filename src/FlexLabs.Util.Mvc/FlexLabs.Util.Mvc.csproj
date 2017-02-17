@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net451</TargetFramework>
+    <RootNamespace>FlexLabs.Mvc</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

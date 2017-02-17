@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace FlexLabs.Util.Web
+namespace FlexLabs.Web
 {
     public static class PagedListExtensions
     {

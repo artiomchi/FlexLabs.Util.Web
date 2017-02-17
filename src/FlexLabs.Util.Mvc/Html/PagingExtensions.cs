@@ -1,10 +1,10 @@
-﻿using FlexLabs.Util.Web;
+﻿using FlexLabs.Web;
 using System;
 using System.Linq;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
 
-namespace FlexLabs.Util.Mvc.Html
+namespace FlexLabs.Mvc.Html
 {
     public static class PagingExtensions
     {
@@ -12,7 +12,7 @@ namespace FlexLabs.Util.Mvc.Html
             where TModel : ITableModel
         {
             var model = html.ViewData.Model;
-            String result = String.Empty;
+            string result = String.Empty;
 
             if (model.SortBy != null)
             {
@@ -44,7 +44,7 @@ namespace FlexLabs.Util.Mvc.Html
             return MvcHtmlString.Create(result);
         }
 
-        public static MvcHtmlString PageSizer<TModel>(this HtmlHelper<TModel> html, String lavel = "Page Size: ", Int32[] pageSizes = null, Int32? currentSize = null)
+        public static MvcHtmlString PageSizer<TModel>(this HtmlHelper<TModel> html, string lavel = "Page Size: ", int[] pageSizes = null, int? currentSize = null)
             where TModel : ITableModel
         {
             var pageSizeItems = TableModel.GetPageSizes(pageSizes, currentSize)
@@ -57,7 +57,7 @@ namespace FlexLabs.Util.Mvc.Html
             return MvcHtmlString.Create(label.ToString() + editor.ToString() + validation.ToString());
         }
 
-        public static MvcHtmlString Pager<TModel>(this HtmlHelper<TModel> html, PagedListData pageData, String label = "Page: ")
+        public static MvcHtmlString Pager<TModel>(this HtmlHelper<TModel> html, PagedListData pageData, string label = "Page: ")
             where TModel : ITableModel
         {
             var labelTag = new TagBuilder("label");
@@ -86,12 +86,12 @@ namespace FlexLabs.Util.Mvc.Html
             return MvcHtmlString.Create(divTag.ToString());
         }
 
-        private static String PagerLink(Int32 pageNumber)
+        private static string PagerLink(int pageNumber)
         {
             return $"<li><button type=\"submit\" name=\"page\" value=\"{pageNumber}\">{pageNumber}</button></li>";
         }
 
-        public static MvcHtmlString Pager<TModel>(this HtmlHelper<TModel> html, String label = "Page: ")
+        public static MvcHtmlString Pager<TModel>(this HtmlHelper<TModel> html, string label = "Page: ")
             where TModel : ITableModel
         {
             if (html.ViewData.Model?.PageItems?.PageCount == 0)

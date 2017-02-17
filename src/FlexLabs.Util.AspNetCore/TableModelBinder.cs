@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.Collections.Generic;
-using FlexLabs.Util.Web;
+using FlexLabs.Web;
 
-namespace FlexLabs.Web.TablePager
+namespace FlexLabs.AspNetCore
 {
     public class TableModelBinder : ComplexTypeModelBinder
     {

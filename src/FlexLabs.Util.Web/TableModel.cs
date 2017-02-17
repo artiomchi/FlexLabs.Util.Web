@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace FlexLabs.Util.Web
+namespace FlexLabs.Web
 {
     public class TableModel
     {
-        public static Int32 DefaultPageSize = 25;
-        public static Int32 DefaultPageRange = 10;
-        public static Int32[] DefaultPageSizes = new[] { 10, 25, 50, 100 };
+        public static int DefaultPageSize = 25;
+        public static int DefaultPageRange = 10;
+        public static int[] DefaultPageSizes = new[] { 10, 25, 50, 100 };
 
-        public static IEnumerable<Int32> GetPageSizes(Int32[] pageSizes = null, Int32? currentSize = null)
+        public static IEnumerable<int> GetPageSizes(int[] pageSizes = null, int? currentSize = null)
         {
             if (pageSizes == null)
                 pageSizes = TableModel.DefaultPageSizes;
@@ -22,7 +22,7 @@ namespace FlexLabs.Util.Web
 
     public abstract class TableModel<TSorter, TModel> : TableModel<TSorter, TModel, TModel>, ITableModel where TSorter : struct
     {
-        public TableModel(TSorter defaultSorter, Boolean defaultAscending, Boolean pagingEnabled = true)
+        public TableModel(TSorter defaultSorter, bool defaultAscending, bool pagingEnabled = true)
             : base(defaultSorter, defaultAscending, pagingEnabled)
         { }
 
@@ -34,24 +34,24 @@ namespace FlexLabs.Util.Web
 
     public abstract class TableModel<TSorter, TSource, TModel> : TableModel, ITableModel where TSorter : struct
     {
-        private readonly TSorter DefaultSortBy;
-        private readonly Boolean DefaultSortAsc;
-        private readonly Boolean PagingEnabled = true;
-        private Func<TSource, Int64> FirstID64Selector = null;
-        private Func<TSource, Int32> FirstID32Selector = null;
+        private readonly TSorter _defaultSortBy;
+        private readonly bool _defaultSortAsc;
+        private readonly bool _pagingEnabled = true;
+        private Func<TSource, long> _firstID64Selector = null;
+        private Func<TSource, int> _firstID32Selector = null;
 
-        public TableModel(TSorter defaultSorter, Boolean defaultAscending, Boolean pagingEnabled = true)
+        public TableModel(TSorter defaultSorter, bool defaultAscending, bool pagingEnabled = true)
         {
-            DefaultSortBy = defaultSorter;
-            DefaultSortAsc = defaultAscending;
-            PagingEnabled = pagingEnabled;
+            _defaultSortBy = defaultSorter;
+            _defaultSortAsc = defaultAscending;
+            _pagingEnabled = pagingEnabled;
         }
         public TSorter? ChangeSort { get; set; }
         public TSorter? SortBy { get; set; }
-        public Boolean? SortAsc { get; set; }
-        public Int32? PageSize { get; set; }
-        public Int32? Page { get; set; }
-        public Int64? FirstItemID { get; set; }
+        public bool? SortAsc { get; set; }
+        public int? PageSize { get; set; }
+        public int? Page { get; set; }
+        public long? FirstItemID { get; set; }
         object ITableModel.SortBy { get { return SortBy; } set { SortBy = (TSorter?)value; } }
 
         public IPagedList<TModel> PageItems { get; private set; }
@@ -59,13 +59,13 @@ namespace FlexLabs.Util.Web
 
         public abstract TModel TranslateItem(TSource item);
 
-        public void SetPageItems(IEnumerable<TSource> items, Int32? totalItemCount = null)
+        public void SetPageItems(IEnumerable<TSource> items, int? totalItemCount = null)
         {
             IEnumerable<TSource> dataSet;
             var pageNumber = Page ?? 1;
             var pageSize = PageSize ?? DefaultPageSize;
 
-            if (PagingEnabled)
+            if (_pagingEnabled)
             {
                 if (!totalItemCount.HasValue)
                 {
@@ -89,34 +89,34 @@ namespace FlexLabs.Util.Web
             else
                 PageItems = new PagedList<TModel>(pageNumber, pageSize, dataSet.Select(i => TranslateItem(i)), totalItemCount ?? dataSet.Count());
 
-            if (PageItems.TotalItemCount > 0 && (FirstID32Selector != null || FirstID64Selector != null))
+            if (PageItems.TotalItemCount > 0 && (_firstID32Selector != null || _firstID64Selector != null))
             {
-                FirstItemID = FirstID64Selector != null
-                    ? dataSet.Select(FirstID64Selector).FirstOrDefault()
-                    : dataSet.Select(FirstID32Selector).FirstOrDefault();
+                FirstItemID = _firstID64Selector != null
+                    ? dataSet.Select(_firstID64Selector).FirstOrDefault()
+                    : dataSet.Select(_firstID32Selector).FirstOrDefault();
             }
         }
 
-        public Int64? GetFirstItemID(Func<TSource, Int64> idSelector)
+        public long? GetFirstItemID(Func<TSource, long> idSelector)
         {
             var showNewResults = !Page.HasValue && !ChangeSort.HasValue;
 
             if (showNewResults)
             {
-                FirstID64Selector = idSelector;
+                _firstID64Selector = idSelector;
                 return null;
             }
 
             return FirstItemID;
         }
 
-        public Int32? GetFirstItemID(Func<TSource, Int32> idSelector)
+        public int? GetFirstItemID(Func<TSource, int> idSelector)
         {
             var showNewResults = !Page.HasValue && !ChangeSort.HasValue;
 
             if (showNewResults)
             {
-                FirstID32Selector = idSelector;
+                _firstID32Selector = idSelector;
                 return null;
             }
 
@@ -129,23 +129,23 @@ namespace FlexLabs.Util.Web
         {
             if (ChangeSort.HasValue)
             {
-                if (ChangeSort.Value.Equals(SortBy ?? DefaultSortBy))
+                if (ChangeSort.Value.Equals(SortBy ?? _defaultSortBy))
                 {
-                    SortAsc = !SortAsc.GetValueOrDefault(DefaultSortAsc);
+                    SortAsc = !SortAsc.GetValueOrDefault(_defaultSortAsc);
                 }
                 else
                 {
                     SortBy = ChangeSort;
                     SortAsc = true;
                 }
-                if (SortAsc.HasValue && SortAsc == DefaultSortAsc)
+                if (SortAsc.HasValue && SortAsc == _defaultSortAsc)
                     SortAsc = null;
-                if (SortBy.HasValue && SortBy.Value.Equals(DefaultSortBy))
+                if (SortBy.HasValue && SortBy.Value.Equals(_defaultSortBy))
                     SortBy = null;
             }
         }
 
-        public TSorter GetSortBy() => SortBy ?? DefaultSortBy;
-        public Boolean GetSortAsc() => SortAsc ?? DefaultSortAsc;
+        public TSorter GetSortBy() => SortBy ?? _defaultSortBy;
+        public bool GetSortAsc() => SortAsc ?? _defaultSortAsc;
     }
 }

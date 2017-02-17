@@ -1,8 +1,8 @@
-﻿using FlexLabs.Util.Web;
+﻿using FlexLabs.Web;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
-namespace FlexLabs.Util.AspNetCore.TagHelpers
+namespace FlexLabs.AspNetCore.TagHelpers
 {
     [OutputElementHint("select")]
     [HtmlTargetElement("fl-pagesizer", TagStructure = TagStructure.WithoutEndTag)]

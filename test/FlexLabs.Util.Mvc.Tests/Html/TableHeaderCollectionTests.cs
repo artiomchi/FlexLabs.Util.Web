@@ -1,4 +1,4 @@
-﻿using FlexLabs.Util.Mvc.Html;
+﻿using FlexLabs.Mvc.Html;
 using System;
 using System.Linq;
 using System.Web;
@@ -11,7 +11,7 @@ namespace FlexLabs.Util.Mvc.Tests.Html
         [Fact]
         public void TableHeaderCollection_InlineInit()
         {
-            Func<Object, IHtmlString> customContent = x => new HtmlString("hello");
+            Func<object, IHtmlString> customContent = x => new HtmlString("hello");
 
             var headers = new TableHeaderCollection
             {

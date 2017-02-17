@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace FlexLabs.Util.Web
+namespace FlexLabs.Web
 {
     public class PagedListData
     {

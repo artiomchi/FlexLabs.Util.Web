@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
 
-namespace FlexLabs.Util.Mvc.Html
+namespace FlexLabs.Mvc.Html
 {
     public static class TableExtensions
     {

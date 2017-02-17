@@ -1,12 +1,10 @@
-﻿using System;
-
-namespace FlexLabs.Util.Mvc.Html
+﻿namespace FlexLabs.Mvc.Html
 {
     public interface ITableHeader
     {
-        String CssClass { get; set; }
-        Int32? ColSpan { get; set; }
-        Int32? RowSpan { get; set; }
-        Boolean IsRendered { get; set; }
+        string CssClass { get; set; }
+        int? ColSpan { get; set; }
+        int? RowSpan { get; set; }
+        bool IsRendered { get; set; }
     }
 }

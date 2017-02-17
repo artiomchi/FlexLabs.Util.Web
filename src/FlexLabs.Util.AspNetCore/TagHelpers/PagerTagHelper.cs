@@ -1,8 +1,8 @@
-﻿using FlexLabs.Util.Web;
+﻿using FlexLabs.Web;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
-namespace FlexLabs.Util.AspNetCore.TagHelpers
+namespace FlexLabs.AspNetCore.TagHelpers
 {
     [OutputElementHint("ul")]
     [HtmlTargetElement("fl-pager", TagStructure = TagStructure.WithoutEndTag)]

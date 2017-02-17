@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 
-namespace FlexLabs.Util.Mvc.Html
+namespace FlexLabs.Mvc.Html
 {
     public class TableHeaderCollection : ICollection<ITableHeader>
     {
@@ -16,12 +15,12 @@ namespace FlexLabs.Util.Mvc.Html
             _headers.Add(item);
         }
 
-        public void Add(Boolean isRendered, String title, Object value = null, String tooltip = null)
+        public void Add(bool isRendered, string title, object value = null, string tooltip = null)
         {
             _headers.Add(new TableHeader { Title = title, Value = value, ToolTip = tooltip, IsRendered = isRendered });
         }
 
-        public void Add(String title, Object value = null, String tooltip = null)
+        public void Add(string title, object value = null, string tooltip = null)
         {
             _headers.Add(new TableHeader { Title = title, Value = value, ToolTip = tooltip });
         }

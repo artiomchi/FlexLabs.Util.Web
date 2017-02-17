@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 
-namespace FlexLabs.Util.Web
+namespace FlexLabs.Web
 {
     public interface IPagedList
     {

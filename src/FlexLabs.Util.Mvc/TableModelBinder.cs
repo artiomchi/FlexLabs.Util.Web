@@ -1,7 +1,7 @@
-﻿using FlexLabs.Util.Web;
+﻿using FlexLabs.Web;
 using System.Web.Mvc;
 
-namespace FlexLabs.Util.Mvc
+namespace FlexLabs.Mvc
 {
     public class TableModelBinder : DefaultModelBinder
     {

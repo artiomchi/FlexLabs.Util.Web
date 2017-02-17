@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Web;
 
-namespace FlexLabs.Util.Mvc.Html
+namespace FlexLabs.Mvc.Html
 {
     public class CustomTableHeader : ITableHeader
     {
-        public Func<Object, IHtmlString> Content { get; set; }
-        public String CssClass { get; set; }
-        public Int32? ColSpan { get; set; }
-        public Int32? RowSpan { get; set; }
-        public Boolean IsRendered { get; set; } = true;
+        public Func<object, IHtmlString> Content { get; set; }
+        public string CssClass { get; set; }
+        public int? ColSpan { get; set; }
+        public int? RowSpan { get; set; }
+        public bool IsRendered { get; set; } = true;
     }
 }
