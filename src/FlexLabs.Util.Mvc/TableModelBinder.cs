@@ -7,12 +7,9 @@ namespace FlexLabs.Mvc
     {
         public override object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
         {
-            ITableModel tableModel = base.BindModel(controllerContext, bindingContext) as ITableModel;
-            if (tableModel != null)
-            {
-                tableModel.UpdateSorter();
-            }
-            return tableModel;
+            var result = base.BindModel(controllerContext, bindingContext);
+            (result as ITableModel)?.UpdateSorter();
+            return result;
         }
     }
 }

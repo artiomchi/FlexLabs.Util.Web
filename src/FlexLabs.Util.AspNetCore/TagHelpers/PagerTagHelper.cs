@@ -36,8 +36,6 @@ namespace FlexLabs.AspNetCore.TagHelpers
                 ulTag.InnerHtml.AppendHtml(liTag);
             }
 
-            // add label and validation?
-
             output.TagName = null;
             output.Content.AppendHtml(ulTag);
         }

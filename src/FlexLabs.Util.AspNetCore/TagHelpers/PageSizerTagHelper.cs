@@ -28,8 +28,6 @@ namespace FlexLabs.AspNetCore.TagHelpers
                 selectTag.InnerHtml.AppendHtml(optionTag);
             }
 
-            // add label and validation?
-
             output.TagName = null;
             output.Content.AppendHtml(selectTag);
         }

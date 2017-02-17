@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
+﻿using FlexLabs.Web;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 using System.Collections.Generic;
-using FlexLabs.Web;
 
 namespace FlexLabs.AspNetCore
 {

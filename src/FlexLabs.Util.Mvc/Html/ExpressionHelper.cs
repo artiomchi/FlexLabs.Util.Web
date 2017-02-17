@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 
@@ -12,8 +11,8 @@ namespace FlexLabs.Mvc.Html
             if (expression == null)
                 return null;
 
-            if (expression is LambdaExpression)
-                return GetMemberInfo((expression as LambdaExpression).Body);
+            if (expression is LambdaExpression lambdaExpression)
+                return GetMemberInfo(lambdaExpression.Body);
 
             switch (expression.NodeType)
             {
@@ -34,8 +33,8 @@ namespace FlexLabs.Mvc.Html
             where TAttribute: Attribute
         {
             var attributes = memberInfo.GetCustomAttributes(typeof(TAttribute), false);
-            if (attributes.Any())
-                return attributes.First() as TAttribute;
+            if (attributes.Length > 0)
+                return attributes[0] as TAttribute;
 
             return null;
         }
