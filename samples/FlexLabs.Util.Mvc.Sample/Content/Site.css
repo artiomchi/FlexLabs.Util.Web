@@ -35,24 +35,24 @@ table.sortable {
         padding: 3px;
     }
 
-table.sortable th button {
-    padding: 0;
-    border: none;
-    background: none;
-    font-weight: bold;
-    cursor: pointer;
-}
+        table.sortable th button {
+            padding: 0;
+            border: none;
+            background: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
 
-ul.pager {
+.table-pager ul {
     display: inline-block;
 }
 
-    ul.pager li {
+    .table-pager ul li {
         display: inline;
         list-style-type: none;
     }
 
-        ul.pager li button {
+        .table-pager ul li button {
             padding: 0 2px;
             border: none;
             background: none;
@@ -61,6 +61,7 @@ ul.pager {
             color: rgb(0, 0, 238);
             font: initial;
         }
-            ul.pager li button:hover {
+
+            .table-pager ul li button:hover {
                 text-decoration: none;
             }

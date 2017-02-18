@@ -12,8 +12,6 @@ namespace FlexLabs.AspNetCore.TagHelpers
         {
             var pageData = new PagedListData(Model.PageItems);
 
-            var ulTag = new TagBuilder("ul");
-
             var inputName = ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldName("Page");
             foreach (var page in pageData.PageRange)
             {
@@ -32,11 +30,11 @@ namespace FlexLabs.AspNetCore.TagHelpers
                     buttonTag.InnerHtml.Append(page.ToString());
                     liTag.InnerHtml.AppendHtml(buttonTag);
                 }
-                ulTag.InnerHtml.AppendHtml(liTag);
+                output.Content.AppendHtml(liTag);
             }
 
-            output.TagName = null;
-            output.Content.AppendHtml(ulTag);
+            output.TagMode = TagMode.StartTagAndEndTag;
+            output.TagName = "ul";
         }
     }
 }

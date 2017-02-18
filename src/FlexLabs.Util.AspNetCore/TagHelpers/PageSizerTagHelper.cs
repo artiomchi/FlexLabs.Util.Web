@@ -14,10 +14,9 @@ namespace FlexLabs.AspNetCore.TagHelpers
 
             var inputName = ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldName(nameof(Model.PageSize));
             var inputID = TagBuilder.CreateSanitizedId(inputName, "_");
-            var selectTag = new TagBuilder("select");
-            selectTag.MergeAttribute("name", inputName);
-            selectTag.MergeAttribute("id", inputID);
-            selectTag.MergeAttribute("onchange", "$(this).closest('form').submit();");
+            output.Attributes.SetAttribute("name", inputName);
+            output.Attributes.SetAttribute("id", inputID);
+            output.Attributes.SetAttribute("onchange", "$(this).closest('form').submit();");
 
             foreach (var size in TableModel.GetPageSizes())
             {
@@ -26,11 +25,11 @@ namespace FlexLabs.AspNetCore.TagHelpers
                 if (size == pageSize)
                     optionTag.MergeAttribute("selected", "selected");
                 optionTag.InnerHtml.Append(size.ToString());
-                selectTag.InnerHtml.AppendHtml(optionTag);
+                output.Content.AppendHtml(optionTag);
             }
 
-            output.TagName = null;
-            output.Content.AppendHtml(selectTag);
+            output.TagMode = TagMode.StartTagAndEndTag;
+            output.TagName = "select";
         }
     }
 }

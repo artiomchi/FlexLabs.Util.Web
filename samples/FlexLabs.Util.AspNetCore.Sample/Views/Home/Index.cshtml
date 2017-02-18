@@ -5,7 +5,7 @@
 }
 
 <form fl-sortable method="post">
-    <table>
+    <table class="sortable">
         <thead>
             <tr>
                 <th fl-sortby="UserSorter.ID">ID</th>
@@ -21,7 +21,7 @@
         }
     </table>
     <div>
-        <div>Page Size: <fl-pagesizer /></div>
-        <div>Page: <fl-pager model="Model" /></div>
+        <div class="half-width">Page Size: <fl-pagesizer /></div>
+        <div class="half-width content-right">Page: <fl-pager class="pager" /></div>
     </div>
 </form>

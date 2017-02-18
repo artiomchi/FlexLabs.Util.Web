@@ -1,11 +1,11 @@
 ﻿using FlexLabs.Linq;
-using FlexLabs.Util.AspNetCore.Sample.Models;
-using FlexLabs.Util.AspNetCore.Sample.ViewModels.Home;
-using Microsoft.AspNetCore.Mvc;
+using FlexLabs.Util.Mvc.Sample.Models;
+using FlexLabs.Util.Mvc.Sample.ViewModels.Home;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.Mvc;
 
-namespace FlexLabs.Util.AspNetCore.Sample.Controllers
+namespace FlexLabs.Util.Mvc.Sample.Controllers
 {
     public class HomeController : Controller
     {
@@ -15,7 +15,7 @@ namespace FlexLabs.Util.AspNetCore.Sample.Controllers
             {  UserSorter.Name, u => u.Name },
         };
         IEnumerable<User> GetUsersFromDatabase(UserSorter sortBy, bool sortAsc)
-            => Enumerable.Range(1, 10_000)
+            => Enumerable.Range(1, 10000)
                 .Select(i => new User
                 {
                     ID = i,
@@ -24,7 +24,7 @@ namespace FlexLabs.Util.AspNetCore.Sample.Controllers
                 .AsQueryable()
                 .OrderBy(_userSorter, sortBy, sortAsc);
 
-        public IActionResult Index(IndexModel model)
+        public ActionResult Index(IndexModel model)
         {
             var allSortedUsers = GetUsersFromDatabase(model.GetSortBy(), model.GetSortAsc());
             model.SetPageItems(allSortedUsers);
