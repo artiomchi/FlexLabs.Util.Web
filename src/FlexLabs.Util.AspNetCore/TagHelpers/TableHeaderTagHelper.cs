@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 namespace FlexLabs.AspNetCore.TagHelpers
 {
     [HtmlTargetElement("th", Attributes = SortByAttribute, TagStructure = TagStructure.NormalOrSelfClosing)]
-    public class TableHeaderTagHelper : TagHelper
+    public class TableHeaderTagHelper : TableModelTagHelper
     {
         public const string SortByAttribute = "fl-sortby";
 
@@ -18,10 +18,14 @@ namespace FlexLabs.AspNetCore.TagHelpers
 
             if (SortBy == null) return;
 
+            var sortBy = SortBy?.ToString() == Model.GetSortBy()?.ToString() && Model.GetSortAsc()
+                ? $"!{SortBy}"
+                : SortBy.ToString();
+
             var button = new TagBuilder("button");
             button.MergeAttribute("type", "submit");
             button.MergeAttribute("name", "changeSort");
-            button.MergeAttribute("value", SortBy.ToString());
+            button.MergeAttribute("value", sortBy);
             var contents = await output.GetChildContentAsync();
             contents.CopyTo(button.InnerHtml);
 

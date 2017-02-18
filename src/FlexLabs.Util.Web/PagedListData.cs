@@ -5,6 +5,7 @@ namespace FlexLabs.Web
 {
     public class PagedListData
     {
+        public PagedListData(IPagedList pagedList) : this(pagedList.PageNumber, pagedList.PageSize, pagedList.PageCount, pagedList.TotalItemCount) { }
         public PagedListData(int pageNumber, int pageSize, int pageCount, int totalCount)
         {
             var range = TableModel.DefaultPageRange;

@@ -14,21 +14,21 @@ namespace FlexLabs.Mvc.Html
             var model = html.ViewData.Model;
             string result = String.Empty;
 
-            if (model.SortBy != null)
+            if (model.GetSortBy()?.ToString() != model.DefaultSortBy?.ToString())
             {
                 var sortBy = new TagBuilder("input");
                 sortBy.MergeAttribute("type", "hidden");
                 sortBy.MergeAttribute("name", "SortBy");
-                sortBy.MergeAttribute("value", model.SortBy.ToString());
+                sortBy.MergeAttribute("value", model.GetSortBy().ToString());
                 result += sortBy.ToString(TagRenderMode.SelfClosing);
             }
 
-            if (model.SortAsc != null)
+            if (model.GetSortAsc() != model.DefaultSortAsc)
             {
                 var sortAsc = new TagBuilder("input");
                 sortAsc.MergeAttribute("type", "hidden");
                 sortAsc.MergeAttribute("name", "SortAsc");
-                sortAsc.MergeAttribute("value", model.SortAsc.ToString());
+                sortAsc.MergeAttribute("value", model.GetSortAsc().ToString());
                 result += sortAsc.ToString(TagRenderMode.SelfClosing);
             }
 

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
+using FlexLabs.Web;
 
 namespace FlexLabs.Mvc.Html
 {
@@ -12,6 +13,8 @@ namespace FlexLabs.Mvc.Html
 
         public static MvcHtmlString TableHeader(this HtmlHelper html, IEnumerable<IEnumerable<ITableHeader>> headersSet)
         {
+            var model = html.ViewData.Model as ITableModel;
+
             var theadTag = new TagBuilder("thead");
 
             foreach (var headers in headersSet)
@@ -41,10 +44,14 @@ namespace FlexLabs.Mvc.Html
 
                         if (header.Value != null)
                         {
+                            var sortBy = header.Value?.ToString() == model.GetSortBy()?.ToString() && model.GetSortAsc()
+                                ? $"!{header.Value}"
+                                : header.Value.ToString();
+
                             var buttonTag = new TagBuilder("button");
                             buttonTag.MergeAttribute("type", "submit");
                             buttonTag.MergeAttribute("name", "changeSort");
-                            buttonTag.MergeAttribute("value", header.Value.ToString());
+                            buttonTag.MergeAttribute("value", sortBy);
                             buttonTag.SetInnerText(header.Title);
                             thTag.InnerHtml = buttonTag.ToString();
                         }

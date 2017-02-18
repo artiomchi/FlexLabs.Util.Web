@@ -1,52 +1,55 @@
-﻿using FlexLabs.Web;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace FlexLabs.AspNetCore.TagHelpers
 {
 
     [HtmlTargetElement("form", Attributes = SortableAttribute, TagStructure = TagStructure.NormalOrSelfClosing)]
-    public class SortableFormTagHelper : TagHelper
+    public class SortableFormTagHelper : TableModelTagHelper
     {
         public const string SortableAttribute = "fl-sortable";
-
-        [HtmlAttributeName(SortableAttribute)]
-        public ITableModel Sortable { get; set; }
 
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
             output.Attributes.RemoveAll(SortableAttribute);
 
-            if (Sortable == null) return;
-
-            if (Sortable.SortBy != null)
+            if (Model.GetSortBy()?.ToString() != Model.DefaultSortBy?.ToString())
             {
-                var sortBy = new TagBuilder("input");
-                sortBy.TagRenderMode = TagRenderMode.SelfClosing;
-                sortBy.MergeAttribute("type", "hidden");
-                sortBy.MergeAttribute("name", "SortBy");
-                sortBy.MergeAttribute("value", Sortable.SortBy.ToString());
-                output.PreContent.AppendHtml(sortBy);
+                var inputName = ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldName(nameof(Model.SortBy));
+                var inputID = TagBuilder.CreateSanitizedId(inputName, "_");
+                var sortByTag = new TagBuilder("input");
+                sortByTag.TagRenderMode = TagRenderMode.SelfClosing;
+                sortByTag.MergeAttribute("type", "hidden");
+                sortByTag.MergeAttribute("name", inputName);
+                sortByTag.MergeAttribute("id", inputID);
+                sortByTag.MergeAttribute("value", Model.GetSortBy().ToString());
+                output.PreContent.AppendHtml(sortByTag);
             }
 
-            if (Sortable.SortAsc != null)
+            if (Model.GetSortAsc() != Model.DefaultSortAsc)
             {
-                var sortAsc = new TagBuilder("input");
-                sortAsc.TagRenderMode = TagRenderMode.SelfClosing;
-                sortAsc.MergeAttribute("type", "hidden");
-                sortAsc.MergeAttribute("name", "SortAsc");
-                sortAsc.MergeAttribute("value", Sortable.SortAsc.ToString());
-                output.PreContent.AppendHtml(sortAsc);
+                var inputName = ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldName(nameof(Model.SortAsc));
+                var inputID = TagBuilder.CreateSanitizedId(inputName, "_");
+                var sortAscTag = new TagBuilder("input");
+                sortAscTag.TagRenderMode = TagRenderMode.SelfClosing;
+                sortAscTag.MergeAttribute("type", "hidden");
+                sortAscTag.MergeAttribute("name", inputName);
+                sortAscTag.MergeAttribute("id", inputID);
+                sortAscTag.MergeAttribute("value", Model.GetSortAsc().ToString());
+                output.PreContent.AppendHtml(sortAscTag);
             }
 
-            if (Sortable.FirstItemID != null)
+            if (Model.FirstItemID != null)
             {
-                var firstItemID = new TagBuilder("input");
-                firstItemID.TagRenderMode = TagRenderMode.SelfClosing;
-                firstItemID.MergeAttribute("type", "hidden");
-                firstItemID.MergeAttribute("name", "FirstItemID");
-                firstItemID.MergeAttribute("value", Sortable.FirstItemID.ToString());
-                output.PreContent.AppendHtml(firstItemID);
+                var inputName = ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldName(nameof(Model.FirstItemID));
+                var inputID = TagBuilder.CreateSanitizedId(inputName, "_");
+                var firstItemIDTag = new TagBuilder("input");
+                firstItemIDTag.TagRenderMode = TagRenderMode.SelfClosing;
+                firstItemIDTag.MergeAttribute("type", "hidden");
+                firstItemIDTag.MergeAttribute("name", inputName);
+                firstItemIDTag.MergeAttribute("id", inputID);
+                firstItemIDTag.MergeAttribute("value", Model.FirstItemID.ToString());
+                output.PreContent.AppendHtml(firstItemIDTag);
             }
         }
     }

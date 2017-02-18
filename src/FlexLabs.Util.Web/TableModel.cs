@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 
 namespace FlexLabs.Web
 {
@@ -34,28 +35,28 @@ namespace FlexLabs.Web
 
     public abstract class TableModel<TSorter, TSource, TModel> : TableModel, ITableModel where TSorter : struct
     {
-        private readonly TSorter _defaultSortBy;
-        private readonly bool _defaultSortAsc;
-        private readonly bool _pagingEnabled = true;
         private Func<TSource, long> _firstID64Selector = null;
         private Func<TSource, int> _firstID32Selector = null;
 
         public TableModel(TSorter defaultSorter, bool defaultAscending, bool pagingEnabled = true)
         {
-            _defaultSortBy = defaultSorter;
-            _defaultSortAsc = defaultAscending;
-            _pagingEnabled = pagingEnabled;
+            DefaultSortBy = defaultSorter;
+            DefaultSortAsc = defaultAscending;
+            PagingEnabled = pagingEnabled;
         }
-        public TSorter? ChangeSort { get; set; }
+
+        public TSorter DefaultSortBy { get; }
+        public bool DefaultSortAsc { get; }
+        public bool PagingEnabled { get; }
+
+        public string ChangeSort { get; set; }
         public TSorter? SortBy { get; set; }
         public bool? SortAsc { get; set; }
         public int? PageSize { get; set; }
         public int? Page { get; set; }
         public long? FirstItemID { get; set; }
-        object ITableModel.SortBy { get { return SortBy; } set { SortBy = (TSorter?)value; } }
 
         public IPagedList<TModel> PageItems { get; private set; }
-        IPagedList ITableModel.PageItems => PageItems;
 
         public abstract TModel TranslateItem(TSource item);
 
@@ -65,7 +66,7 @@ namespace FlexLabs.Web
             var pageNumber = Page ?? 1;
             var pageSize = PageSize ?? DefaultPageSize;
 
-            if (_pagingEnabled)
+            if (PagingEnabled)
             {
                 if (!totalItemCount.HasValue)
                 {
@@ -99,7 +100,7 @@ namespace FlexLabs.Web
 
         public long? GetFirstItemID(Func<TSource, long> idSelector)
         {
-            var showNewResults = !Page.HasValue && !ChangeSort.HasValue;
+            var showNewResults = !Page.HasValue && !string.IsNullOrEmpty(ChangeSort);
 
             if (showNewResults)
             {
@@ -112,7 +113,7 @@ namespace FlexLabs.Web
 
         public int? GetFirstItemID(Func<TSource, int> idSelector)
         {
-            var showNewResults = !Page.HasValue && !ChangeSort.HasValue;
+            var showNewResults = !Page.HasValue && !string.IsNullOrEmpty(ChangeSort);
 
             if (showNewResults)
             {
@@ -125,27 +126,37 @@ namespace FlexLabs.Web
             return null;
         }
 
-        public void UpdateSorter()
+        private static bool IsTypeEnum(Type type)
         {
-            if (ChangeSort.HasValue)
-            {
-                if (ChangeSort.Value.Equals(SortBy ?? _defaultSortBy))
-                {
-                    SortAsc = !SortAsc.GetValueOrDefault(_defaultSortAsc);
-                }
-                else
-                {
-                    SortBy = ChangeSort;
-                    SortAsc = true;
-                }
-                if (SortAsc.HasValue && SortAsc == _defaultSortAsc)
-                    SortAsc = null;
-                if (SortBy.HasValue && SortBy.Value.Equals(_defaultSortBy))
-                    SortBy = null;
-            }
+#if NETSTANDARD1_6
+            return type.GetTypeInfo().IsEnum;
+#else
+            return type.IsEnum;
+#endif
         }
 
-        public TSorter GetSortBy() => SortBy ?? _defaultSortBy;
-        public bool GetSortAsc() => SortAsc ?? _defaultSortAsc;
+        public TSorter GetSortBy()
+        {
+            if (!string.IsNullOrEmpty(ChangeSort))
+            {
+                var changeSort = ChangeSort.TrimStart('!');
+                return IsTypeEnum(typeof(TSorter))
+                    ? (TSorter)Enum.Parse(typeof(TSorter), changeSort)
+                    : (TSorter)Convert.ChangeType(changeSort, typeof(TSorter));
+            }
+            return SortBy ?? DefaultSortBy;
+        }
+
+        public bool GetSortAsc()
+            => !string.IsNullOrEmpty(ChangeSort)
+                ? ChangeSort[0] != '!'
+                : SortAsc ?? DefaultSortAsc;
+
+        #region ITableModel
+        object ITableModel.DefaultSortBy => DefaultSortBy;
+        object ITableModel.SortBy { get => SortBy; set => SortBy = (TSorter?)value; }
+        IPagedList ITableModel.PageItems => PageItems;
+        object ITableModel.GetSortBy() => GetSortBy();
+        #endregion
     }
 }
