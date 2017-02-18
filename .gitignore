@@ -190,3 +190,4 @@ _Pvt_Extensions/
 ModelManifest.xml
 project.lock.json
 .vs/
+launchSettings.json

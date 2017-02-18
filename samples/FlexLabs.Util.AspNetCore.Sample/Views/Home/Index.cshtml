@@ -1,0 +1,27 @@
+﻿@using FlexLabs.Util.AspNetCore.Sample.Models
+@model FlexLabs.Util.AspNetCore.Sample.ViewModels.Home.IndexModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<form fl-sortable method="post">
+    <table>
+        <thead>
+            <tr>
+                <th fl-sortby="UserSorter.ID">ID</th>
+                <th fl-sortby="UserSorter.Name">Name</th>
+            </tr>
+        </thead>
+        @foreach (var user in Model.PageItems)
+        {
+            <tr>
+                <td>@user.ID</td>
+                <td>@user.Name</td>
+            </tr>
+        }
+    </table>
+    <div>
+        <div>Page Size: <fl-pagesizer /></div>
+        <div>Page: <fl-pager model="Model" /></div>
+    </div>
+</form>
