@@ -3,6 +3,17 @@
   <PropertyGroup>
     <TargetFramework>net451</TargetFramework>
     <RootNamespace>FlexLabs.Mvc</RootNamespace>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Version>2.1.0</Version>
+    <PackageProjectUrl>https://github.com/artiomchi/FlexLabs.Util.Web</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/artiomchi/FlexLabs.Util.Web</RepositoryUrl>
+    <Description>Building on the same principle as FlexLabs.Util, adds helper methods for MVC enabled projects!
+
+This is the ASP.NET MVC part</Description>
+    <Product>FlexLabs Util Web - MVC</Product>
+    <Company>Artiom Chilaru</Company>
+    <Authors>Artiom Chilaru</Authors>
+    <AssemblyVersion>2.1.0.0</AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup>

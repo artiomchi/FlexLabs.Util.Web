@@ -7,7 +7,7 @@ namespace FlexLabs.AspNetCore.TagHelpers
     [HtmlTargetElement("th", Attributes = SortByAttribute, TagStructure = TagStructure.NormalOrSelfClosing)]
     public class TableHeaderTagHelper : TableModelTagHelper
     {
-        public const string SortByAttribute = "fl-sortby";
+        private const string SortByAttribute = "fl-sortby";
 
         [HtmlAttributeName(SortByAttribute)]
         public object SortBy { get; set; }

@@ -3,6 +3,16 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard1.6;net451</TargetFrameworks>
     <RootNamespace>FlexLabs.Web</RootNamespace>
+    <Description>Building on the same principle as FlexLabs.Util, adds helper methods for MVC enabled projects!</Description>
+    <PackageProjectUrl>https://github.com/artiomchi/FlexLabs.Util.Web</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/artiomchi/FlexLabs.Util.Web</RepositoryUrl>
+    <Authors>Artiom Chilaru</Authors>
+    <Version>2.1.0</Version>
+    <AssemblyVersion>2.1.0.0</AssemblyVersion>
+    <Company>Artiom Chilaru</Company>
+    <Product>FlexLabs Util Web</Product>
+    <Copyright>Artiom Chilaru © 2017</Copyright>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.6' ">

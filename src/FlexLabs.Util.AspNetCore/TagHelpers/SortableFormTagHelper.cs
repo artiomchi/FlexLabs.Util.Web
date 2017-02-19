@@ -7,7 +7,7 @@ namespace FlexLabs.AspNetCore.TagHelpers
     [HtmlTargetElement("form", Attributes = SortableAttribute, TagStructure = TagStructure.NormalOrSelfClosing)]
     public class SortableFormTagHelper : TableModelTagHelper
     {
-        public const string SortableAttribute = "fl-sortable";
+        private const string SortableAttribute = "fl-sortable";
 
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
