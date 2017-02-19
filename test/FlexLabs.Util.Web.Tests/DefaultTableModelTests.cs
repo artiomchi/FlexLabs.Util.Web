@@ -71,23 +71,18 @@ namespace FlexLabs.Util.Web.Tests
         public static Action<TestEntity> EntityMatcher(TestEntity entity)
             => e => Assert.Equal(entity, e);
 
-        [Fact]
-        public void TableModel_Paging()
+        [Theory]
+        [InlineData(null)]
+        [InlineData(1)]
+        [InlineData(2)]
+        [InlineData(10)]
+        public void TableModel_Paging(int? page)
         {
+            _model.Page = page;
             _model.PageSize = PageSize;
             _model.SetPageItems(SampleDataSet);
             Assert.Equal(PageSize, _model.PageItems.Count);
-            Assert.Collection(_model.PageItems, SampleDataSet.Take(PageSize).Select(EntityMatcher).ToArray());
-        }
-
-        [Fact]
-        public void TableModel_Paging_Page2()
-        {
-            _model.PageSize = PageSize;
-            _model.Page = 2;
-            _model.SetPageItems(SampleDataSet);
-            Assert.Equal(PageSize, _model.PageItems.Count);
-            Assert.Collection(_model.PageItems, SampleDataSet.Skip(PageSize).Take(PageSize).Select(EntityMatcher).ToArray());
+            Assert.Collection(_model.PageItems, SampleDataSet.Skip(((page ?? 1) - 1) * PageSize).Take(PageSize).Select(EntityMatcher).ToArray());
         }
 
         [Fact]

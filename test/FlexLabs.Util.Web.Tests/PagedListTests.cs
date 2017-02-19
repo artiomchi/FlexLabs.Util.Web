@@ -20,28 +20,22 @@ namespace FlexLabs.Util.Web.Tests
             Assert.Equal(totalCount, pagedList.TotalItemCount);
         }
 
-        [Fact]
-        public void PagedList_PageCount_Simple()
+        [Theory]
+        [InlineData(200, 20)]
+        [InlineData(201, 21)]
+        [InlineData(205, 21)]
+        [InlineData(209, 21)]
+        [InlineData(210, 21)]
+        [InlineData(211, 22)]
+        public void PagedList_PageCount(int totalCount, int expectingPages)
         {
-            int pageNumber = 1, pageSize = 10, pages = 20, totalCount = pageSize * pages;
+            int pageNumber = 1, pageSize = 10;
             var data = Enumerable.Range(1, totalCount);
 
             var pagedList = data.ToPagedList(pageNumber, pageSize);
 
             Assert.Equal(totalCount, pagedList.TotalItemCount);
-            Assert.Equal(pages, pagedList.PageCount);
-        }
-
-        [Fact]
-        public void PagedList_PageCount_PartFilled()
-        {
-            int pageNumber = 1, pageSize = 10, pages = 20, totalCount = pageSize * pages + pageSize / 2;
-            var data = Enumerable.Range(1, totalCount);
-
-            var pagedList = data.ToPagedList(pageNumber, pageSize);
-
-            Assert.Equal(totalCount, pagedList.TotalItemCount);
-            Assert.Equal(pages + 1, pagedList.PageCount);
+            Assert.Equal(expectingPages, pagedList.PageCount);
         }
     }
 }

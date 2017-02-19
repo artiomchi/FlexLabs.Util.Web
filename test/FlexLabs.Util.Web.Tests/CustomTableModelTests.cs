@@ -6,30 +6,28 @@ namespace FlexLabs.Util.Web.Tests
 {
     class CustomTableModelTests
     {
-        [Fact]
-        public void TableModel_ContructorParamsSet()
+        [Theory]
+        [InlineData(TestEntitySorter.ID, true, true)]
+        [InlineData(TestEntitySorter.ID, false, true)]
+        [InlineData(TestEntitySorter.ID, true, false)]
+        [InlineData(TestEntitySorter.ID, false, false)]
+        [InlineData(TestEntitySorter.Name, false, false)]
+        public void TableModel_ContructorParamsSet(TestEntitySorter sortBy, bool sortAsc, bool enablePaging)
         {
-            var model = new TestEntityModel(TestEntitySorter.ID, false, false);
+            var model = new TestEntityModel(sortBy, sortAsc, enablePaging);
             Assert.Equal(TestEntitySorter.ID, model.DefaultSortBy);
             Assert.Equal(false, model.DefaultSortAsc);
             Assert.Equal(false, model.PagingEnabled);
         }
 
-        [Fact]
-        public void TableModel_NoPaging()
+        [Theory]
+        [InlineData(null, null)]
+        [InlineData(1, null)]
+        [InlineData(null, 20)]
+        [InlineData(3, 5)]
+        public void TableModel_NoPaging(int? page, int? pageSize)
         {
             var model = new TestEntityModel(TestEntitySorter.ID, true, false);
-            model.SetPageItems(DefaultTableModelTests.SampleDataSet);
-            Assert.Equal(DefaultTableModelTests.SampleDataSet.Length, model.PageItems.Count);
-            Assert.Collection(model.PageItems, DefaultTableModelTests.SampleDataSet.Select(DefaultTableModelTests.EntityMatcher).ToArray());
-        }
-
-        [Fact]
-        public void TableModel_NoPaging_Page2() // Page number and size should be ignored
-        {
-            var model = new TestEntityModel(TestEntitySorter.ID, true, false);
-            model.Page = 2;
-            model.PageSize = DefaultTableModelTests.PageSize;
             model.SetPageItems(DefaultTableModelTests.SampleDataSet);
             Assert.Equal(DefaultTableModelTests.SampleDataSet.Length, model.PageItems.Count);
             Assert.Collection(model.PageItems, DefaultTableModelTests.SampleDataSet.Select(DefaultTableModelTests.EntityMatcher).ToArray());
