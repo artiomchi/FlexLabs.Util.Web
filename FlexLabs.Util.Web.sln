@@ -20,11 +20,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlexLabs.Util.Mvc", "src\Fl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlexLabs.Util.AspNetCore", "src\FlexLabs.Util.AspNetCore\FlexLabs.Util.AspNetCore.csproj", "{6C257350-A8F3-4D92-ACB2-E9049D247978}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlexLabs.Util.Mvc.Tests", "test\FlexLabs.Util.Mvc.Tests\FlexLabs.Util.Mvc.Tests.csproj", "{0047E4F6-42E8-4516-BAD8-121D4781C088}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlexLabs.Util.AspNetCore.Sample", "samples\FlexLabs.Util.AspNetCore.Sample\FlexLabs.Util.AspNetCore.Sample.csproj", "{4CFDD24B-5EAE-40A7-B668-326EBC149761}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlexLabs.Util.Mvc.Sample", "samples\FlexLabs.Util.Mvc.Sample\FlexLabs.Util.Mvc.Sample.csproj", "{0C52C87D-30EF-4247-B6B4-FD842ECA3545}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlexLabs.Util.Mvc.Sample", "samples\FlexLabs.Util.Mvc.Sample\FlexLabs.Util.Mvc.Sample.csproj", "{0C52C87D-30EF-4247-B6B4-FD842ECA3545}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlexLabs.Util.Mvc.Tests", "test\FlexLabs.Util.Mvc.Tests\FlexLabs.Util.Mvc.Tests.csproj", "{0047E4F6-42E8-4516-BAD8-121D4781C088}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlexLabs.Util.Web.Tests", "test\FlexLabs.Util.Web.Tests\FlexLabs.Util.Web.Tests.csproj", "{9077AC75-2967-4B6A-81B1-E844D21D7FB4}"
 EndProject
