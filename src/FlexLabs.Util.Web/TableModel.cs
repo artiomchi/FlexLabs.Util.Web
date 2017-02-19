@@ -28,9 +28,7 @@ namespace FlexLabs.Web
         { }
 
         public override TModel TranslateItem(TModel item)
-        {
-            throw new NotImplementedException();
-        }
+            => throw new NotImplementedException();
     }
 
     public abstract class TableModel<TSorter, TSource, TModel> : TableModel, ITableModel where TSorter : struct
@@ -100,7 +98,7 @@ namespace FlexLabs.Web
 
         public long? GetFirstItemID(Func<TSource, long> idSelector)
         {
-            var showNewResults = !Page.HasValue && !string.IsNullOrEmpty(ChangeSort);
+            var showNewResults = !Page.HasValue && string.IsNullOrEmpty(ChangeSort);
 
             if (showNewResults)
             {
@@ -113,7 +111,7 @@ namespace FlexLabs.Web
 
         public int? GetFirstItemID(Func<TSource, int> idSelector)
         {
-            var showNewResults = !Page.HasValue && !string.IsNullOrEmpty(ChangeSort);
+            var showNewResults = !Page.HasValue && string.IsNullOrEmpty(ChangeSort);
 
             if (showNewResults)
             {
