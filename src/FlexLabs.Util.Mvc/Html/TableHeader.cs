@@ -1,5 +1,8 @@
 ﻿namespace FlexLabs.Mvc.Html
 {
+    /// <summary>
+    /// Represents a single table header in a sortable table
+    /// </summary>
     public class TableHeader : ITableHeader
     {
         public string Title { get; set; }

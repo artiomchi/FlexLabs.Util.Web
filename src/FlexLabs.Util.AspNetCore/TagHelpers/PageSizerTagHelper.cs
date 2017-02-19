@@ -4,6 +4,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace FlexLabs.AspNetCore.TagHelpers
 {
+    /// <summary>
+    /// Tag helper that renders a dropdown to change the page size
+    /// </summary>
     [OutputElementHint("select")]
     [HtmlTargetElement("fl-pagesizer", TagStructure = TagStructure.WithoutEndTag)]
     public class PageSizerTagHelper : TableModelTagHelper

@@ -3,6 +3,9 @@ using System.Linq;
 
 namespace FlexLabs.Web
 {
+    /// <summary>
+    /// Metadata about a paged result set used to identify which page numbers to display on screen
+    /// </summary>
     public class PagedListData
     {
         public PagedListData(IPagedList pagedList) : this(pagedList.PageNumber, pagedList.PageSize, pagedList.PageCount, pagedList.TotalItemCount) { }

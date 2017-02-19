@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace FlexLabs.Mvc.Html
 {
+    /// <summary>
+    /// Represents a collection of headers. Can be used to simplify header initialisation
+    /// </summary>
     public class TableHeaderCollection : ICollection<ITableHeader>
     {
         private readonly IList<ITableHeader> _headers = new List<ITableHeader>();

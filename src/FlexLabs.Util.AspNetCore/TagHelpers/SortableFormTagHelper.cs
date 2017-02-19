@@ -4,6 +4,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 namespace FlexLabs.AspNetCore.TagHelpers
 {
 
+    /// <summary>
+    /// TagHelper that adds the necessary elements to the {form} to keep track of which column and direction it is sorted by
+    /// </summary>
     [HtmlTargetElement("form", Attributes = SortableAttribute, TagStructure = TagStructure.NormalOrSelfClosing)]
     public class SortableFormTagHelper : TableModelTagHelper
     {

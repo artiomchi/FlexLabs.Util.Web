@@ -4,6 +4,8 @@
     <TargetFramework>net451</TargetFramework>
     <RootNamespace>FlexLabs.Mvc</RootNamespace>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <NoWarn>1701;1702;1705;1591</NoWarn>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\FlexLabs.Util.Mvc.xml</DocumentationFile>
     <Version>2.1.0</Version>
     <PackageProjectUrl>https://github.com/artiomchi/FlexLabs.Util.Web</PackageProjectUrl>
     <RepositoryUrl>https://github.com/artiomchi/FlexLabs.Util.Web</RepositoryUrl>

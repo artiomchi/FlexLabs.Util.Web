@@ -4,6 +4,9 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace FlexLabs.AspNetCore.TagHelpers
 {
+    /// <summary>
+    /// Tag helpers that renders a list with page number button elements
+    /// </summary>
     [OutputElementHint("ul")]
     [HtmlTargetElement("fl-pager", TagStructure = TagStructure.WithoutEndTag)]
     public class PagerTagHelper : TableModelTagHelper

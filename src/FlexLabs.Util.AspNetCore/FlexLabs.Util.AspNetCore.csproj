@@ -4,6 +4,8 @@
     <TargetFrameworks>netstandard1.6;net451</TargetFrameworks>
     <RootNamespace>FlexLabs.AspNetCore</RootNamespace>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <NoWarn>1701;1702;1705;1591</NoWarn>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\FlexLabs.Util.AspNetCore.xml</DocumentationFile>
     <Version>2.1.0</Version>
     <Authors>Artiom Chilaru</Authors>
     <Company>Artiom Chilaru</Company>

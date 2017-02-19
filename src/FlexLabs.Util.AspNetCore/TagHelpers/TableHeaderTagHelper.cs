@@ -4,6 +4,9 @@ using System.Threading.Tasks;
 
 namespace FlexLabs.AspNetCore.TagHelpers
 {
+    /// <summary>
+    /// Tag helper that renders a header button to change the column and direction of data sorting
+    /// </summary>
     [HtmlTargetElement("th", Attributes = SortByAttribute, TagStructure = TagStructure.NormalOrSelfClosing)]
     public class TableHeaderTagHelper : TableModelTagHelper
     {

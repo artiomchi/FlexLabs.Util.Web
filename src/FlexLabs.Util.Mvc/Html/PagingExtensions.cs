@@ -8,6 +8,12 @@ namespace FlexLabs.Mvc.Html
 {
     public static class PagingExtensions
     {
+        /// <summary>
+        /// Adds the necessary elements to the &lt;form&gt; to keep track of which column and direction it is sorted by
+        /// </summary>
+        /// <typeparam name="TModel"></typeparam>
+        /// <param name="html"></param>
+        /// <returns></returns>
         public static MvcHtmlString EnableFormSorting<TModel>(this HtmlHelper<TModel> html)
             where TModel : ITableModel
         {
@@ -44,19 +50,36 @@ namespace FlexLabs.Mvc.Html
             return MvcHtmlString.Create(result);
         }
 
-        public static MvcHtmlString PageSizer<TModel>(this HtmlHelper<TModel> html, string lavel = "Page Size: ", int[] pageSizes = null, int? currentSize = null)
+        /// <summary>
+        /// Render a dropdown to change the page size, with a label before it
+        /// </summary>
+        /// <typeparam name="TModel"></typeparam>
+        /// <param name="html"></param>
+        /// <param name="label"></param>
+        /// <param name="pageSizes"></param>
+        /// <param name="currentSize"></param>
+        /// <returns></returns>
+        public static MvcHtmlString PageSizer<TModel>(this HtmlHelper<TModel> html, string label = "Page Size: ", int[] pageSizes = null, int? currentSize = null)
             where TModel : ITableModel
         {
             var pageSizeItems = TableModel.GetPageSizes(pageSizes, currentSize)
                 .Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString(), Selected = i == (currentSize ?? TableModel.DefaultPageSize) });
 
-            var label = html.LabelFor(m => m.PageSize);
+            var labelTag = html.LabelFor(m => m.PageSize, label);
             var editor = html.DropDownListFor(m => m.PageSize, pageSizeItems, new { onchange = "$(this).closest('form').submit();" });
             var validation = html.ValidationMessageFor(m => m.PageSize);
 
-            return MvcHtmlString.Create(label.ToString() + editor.ToString() + validation.ToString());
+            return MvcHtmlString.Create(labelTag.ToString() + editor.ToString() + validation.ToString());
         }
 
+        /// <summary>
+        /// Renders a list with page number button elements, and a label before it
+        /// </summary>
+        /// <typeparam name="TModel"></typeparam>
+        /// <param name="html"></param>
+        /// <param name="pageData"></param>
+        /// <param name="label"></param>
+        /// <returns></returns>
         public static MvcHtmlString Pager<TModel>(this HtmlHelper<TModel> html, PagedListData pageData, string label = "Page: ")
             where TModel : ITableModel
         {
@@ -91,6 +114,13 @@ namespace FlexLabs.Mvc.Html
             return $"<li><button type=\"submit\" name=\"page\" value=\"{pageNumber}\">{pageNumber}</button></li>";
         }
 
+        /// <summary>
+        /// Renders a list with page number button elements, and a label before it
+        /// </summary>
+        /// <typeparam name="TModel"></typeparam>
+        /// <param name="html"></param>
+        /// <param name="label"></param>
+        /// <returns></returns>
         public static MvcHtmlString Pager<TModel>(this HtmlHelper<TModel> html, string label = "Page: ")
             where TModel : ITableModel
         {

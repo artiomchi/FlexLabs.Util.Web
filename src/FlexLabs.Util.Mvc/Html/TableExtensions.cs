@@ -6,11 +6,23 @@ namespace FlexLabs.Mvc.Html
 {
     public static class TableExtensions
     {
+        /// <summary>
+        /// Render a &lt;thead&gt; element with sortable table headers
+        /// </summary>
+        /// <param name="html"></param>
+        /// <param name="headers"></param>
+        /// <returns></returns>
         public static MvcHtmlString TableHeader(this HtmlHelper html, IEnumerable<ITableHeader> headers)
         {
             return TableHeader(html, new[] { headers });
         }
 
+        /// <summary>
+        /// Render a multi-row &lt;thead&gt; element with sortable table headers
+        /// </summary>
+        /// <param name="html"></param>
+        /// <param name="headersSet"></param>
+        /// <returns></returns>
         public static MvcHtmlString TableHeader(this HtmlHelper html, IEnumerable<IEnumerable<ITableHeader>> headersSet)
         {
             var model = html.ViewData.Model as ITableModel;

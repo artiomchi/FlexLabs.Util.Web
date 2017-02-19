@@ -5,6 +5,14 @@ namespace FlexLabs.Web
 {
     public static class PagedListExtensions
     {
+        /// <summary>
+        /// Extract a single page worth of results from the dataset
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="pageNumber"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
         public static IPagedList<T> ToPagedList<T>(this IEnumerable<T> source, int pageNumber, int pageSize)
         {
             var totalResults = source.Count();

@@ -2,6 +2,9 @@
 
 namespace FlexLabs.AspNetCore.TagHelpers
 {
+    /// <summary>
+    /// Tag helper that can prevent the element from rendering depending on the condition passed
+    /// </summary>
     [HtmlTargetElement(Attributes = ConditionAttribute)]
     public class ConditionTagHelper : TagHelper
     {
