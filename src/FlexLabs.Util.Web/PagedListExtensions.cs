@@ -14,6 +14,17 @@ namespace FlexLabs.Web
         /// <param name="pageSize"></param>
         /// <returns></returns>
         public static IPagedList<T> ToPagedList<T>(this IEnumerable<T> source, int pageNumber, int pageSize)
+            => ToPagedList(source.AsQueryable(), pageNumber, pageSize);
+
+        /// <summary>
+        /// Extract a single page worth of results from the dataset
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="pageNumber"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        public static IPagedList<T> ToPagedList<T>(this IQueryable<T> source, int pageNumber, int pageSize)
         {
             var totalResults = source.Count();
             var pageResults = pageNumber > 1
