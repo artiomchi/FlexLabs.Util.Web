@@ -6,15 +6,19 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <NoWarn>1701;1702;1705;1591</NoWarn>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\FlexLabs.Util.Web.xml</DocumentationFile>
-    <Description>Building on the same principle as FlexLabs.Util, adds helper methods for MVC enabled projects!</Description>
-    <PackageProjectUrl>https://github.com/artiomchi/FlexLabs.Util.Web</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/artiomchi/FlexLabs.Util.Web</RepositoryUrl>
     <Authors>Artiom Chilaru</Authors>
-    <Version>2.1.0</Version>
-    <AssemblyVersion>2.1.0.0</AssemblyVersion>
     <Company>Artiom Chilaru</Company>
     <Product>FlexLabs Util Web</Product>
+    <Description>Building on the same principle as FlexLabs.Util, adds helper methods for MVC enabled projects!</Description>
     <Copyright>Artiom Chilaru © 2017</Copyright>
+    <PackageProjectUrl>https://github.com/artiomchi/FlexLabs.Util.Web</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/artiomchi/FlexLabs.Util.Web</RepositoryUrl>
+    <AssemblyVersion>2.1.0</AssemblyVersion>
+    <FileVersion>2.1.0</FileVersion>
+    <Version>2.1.0</Version>
+    <SignAssembly>True</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\..\..\Keys\FlexLabsStrongKey.pfx</AssemblyOriginatorKeyFile>
+    <PostBuildEvent>..\..\..\..\..\..\signtool.exe sign /n "Artiom Chilaru" /t "http://timestamp.digicert.com" FlexLabs.Util.Web.dll</PostBuildEvent>
   </PropertyGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.6' ">
