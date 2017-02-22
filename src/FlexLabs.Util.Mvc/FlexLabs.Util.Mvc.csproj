@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net451</TargetFramework>
+    <RootNamespace>FlexLabs.Mvc</RootNamespace>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <NoWarn>1701;1702;1705;1591</NoWarn>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\FlexLabs.Util.Mvc.xml</DocumentationFile>
+    <Authors>Artiom Chilaru</Authors>
+    <Company>Artiom Chilaru</Company>
+    <Product>FlexLabs Util Web - MVC</Product>
+    <Description>Building on the same principle as FlexLabs.Util, adds helper methods for MVC enabled projects!
+
+This is the ASP.NET MVC part</Description>
+    <Copyright>Artiom Chilaru © 2017</Copyright>
+    <PackageProjectUrl>https://github.com/artiomchi/FlexLabs.Util.Web</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/artiomchi/FlexLabs.Util.Web</RepositoryUrl>
+    <AssemblyVersion>2.1.0</AssemblyVersion>
+    <FileVersion>2.1.0</FileVersion>
+    <Version>2.1.0</Version>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <SignAssembly>True</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\..\..\Keys\FlexLabsStrongKey.pfx</AssemblyOriginatorKeyFile>
+    <PostBuildEvent>..\..\..\..\..\..\signtool.exe sign /n "Artiom Chilaru" /t "http://timestamp.digicert.com" FlexLabs.Util.Mvc.dll</PostBuildEvent>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Web" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FlexLabs.Util.Web\FlexLabs.Util.Web.csproj" />
+  </ItemGroup>
+
+</Project>

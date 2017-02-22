@@ -7,7 +7,7 @@ namespace FlexLabs.Web
         /// <summary>
         /// A string that is used to format the input
         /// </summary>
-        public String Format { get; set; }
-        public String Type { get; set; }
+        public string Format { get; set; }
+        public string Type { get; set; }
     }
 }

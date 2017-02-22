@@ -1,0 +1,67 @@
+﻿html, body {
+    box-sizing: border-box;
+}
+
+*, *::after, *::before {
+    box-sizing: inherit;
+}
+
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+#container {
+    max-width: 960px;
+    margin: auto auto;
+}
+
+.half-width {
+    display: inline-block;
+    width: 49%;
+}
+
+.content-right {
+    text-align: right;
+}
+
+table.sortable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+    table.sortable td, table.sortable th {
+        border: 1px solid lightgray;
+        padding: 3px;
+    }
+
+        table.sortable th button {
+            padding: 0;
+            border: none;
+            background: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+.table-pager ul {
+    display: inline-block;
+}
+
+    .table-pager ul li {
+        display: inline;
+        list-style-type: none;
+    }
+
+        .table-pager ul li button {
+            padding: 0 2px;
+            border: none;
+            background: none;
+            text-decoration: underline;
+            cursor: pointer;
+            color: rgb(0, 0, 238);
+            font: initial;
+        }
+
+            .table-pager ul li button:hover {
+                text-decoration: none;
+            }

@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard1.6;net451</TargetFrameworks>
+    <RootNamespace>FlexLabs.AspNetCore</RootNamespace>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <NoWarn>1701;1702;1705;1591</NoWarn>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\FlexLabs.Util.AspNetCore.xml</DocumentationFile>
+    <Authors>Artiom Chilaru</Authors>
+    <Company>Artiom Chilaru</Company>
+    <Product>FlexLabs Util Web - AspNetCore</Product>
+    <Description>Building on the same principle as FlexLabs.Util, adds helper methods for MVC enabled projects!
+
+This is the AspNetMvc part</Description>
+    <Copyright>Artiom Chilaru © 2017</Copyright>
+    <PackageProjectUrl>https://github.com/artiomchi/FlexLabs.Util.Web</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/artiomchi/FlexLabs.Util.Web</RepositoryUrl>
+    <AssemblyVersion>2.1.0</AssemblyVersion>
+    <FileVersion>2.1.0</FileVersion>
+    <Version>2.1.0</Version>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <SignAssembly>True</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\..\..\Keys\FlexLabsStrongKey.pfx</AssemblyOriginatorKeyFile>
+    <PostBuildEvent>..\..\..\..\..\..\signtool.exe sign /n "Artiom Chilaru" /t "http://timestamp.digicert.com" FlexLabs.Util.AspNetCore.dll</PostBuildEvent>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="1.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="1.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FlexLabs.Util.Web\FlexLabs.Util.Web.csproj" />
+  </ItemGroup>
+
+</Project>

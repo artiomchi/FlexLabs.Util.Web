@@ -1,0 +1,28 @@
+﻿@using FlexLabs.Util.Mvc.Sample.Models
+@model FlexLabs.Util.Mvc.Sample.ViewModels.Home.IndexModel
+@{
+    ViewBag.Title = "Home Page";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.EnableFormSorting()
+    <table class="sortable">
+        @Html.TableHeader(new TableHeaderCollection
+        {
+            { "ID", UserSorter.ID },
+            { "Name", UserSorter.Name },
+        })
+        @foreach (var user in Model.PageItems)
+        {
+            <tr>
+                <td>@user.ID</td>
+                <td>@user.Name</td>
+            </tr>
+        }
+    </table>
+    <div>
+        <div class="half-width">@Html.PageSizer()</div>
+        <div class="half-width content-right">@Html.Pager()</div>
+    </div>
+}
