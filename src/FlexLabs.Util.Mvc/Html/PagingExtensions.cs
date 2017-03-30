@@ -3,6 +3,7 @@ using System;
 using System.Linq;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
+using System.Text;
 
 namespace FlexLabs.Mvc.Html
 {
@@ -18,36 +19,45 @@ namespace FlexLabs.Mvc.Html
             where TModel : ITableModel
         {
             var model = html.ViewData.Model;
-            string result = String.Empty;
+            var result = new StringBuilder();
 
             if (model.GetSortBy()?.ToString() != model.DefaultSortBy?.ToString())
             {
+                var inputName = html.ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldName(nameof(model.SortBy));
+                var inputID = TagBuilder.CreateSanitizedId(inputName, "_");
                 var sortBy = new TagBuilder("input");
                 sortBy.MergeAttribute("type", "hidden");
-                sortBy.MergeAttribute("name", "SortBy");
+                sortBy.MergeAttribute("name", inputName);
+                sortBy.MergeAttribute("id", inputID);
                 sortBy.MergeAttribute("value", model.GetSortBy().ToString());
-                result += sortBy.ToString(TagRenderMode.SelfClosing);
+                result.Append(sortBy.ToString(TagRenderMode.SelfClosing));
             }
 
             if (model.GetSortAsc() != model.DefaultSortAsc)
             {
+                var inputName = html.ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldName(nameof(model.SortAsc));
+                var inputID = TagBuilder.CreateSanitizedId(inputName, "_");
                 var sortAsc = new TagBuilder("input");
                 sortAsc.MergeAttribute("type", "hidden");
-                sortAsc.MergeAttribute("name", "SortAsc");
+                sortAsc.MergeAttribute("name", inputName);
+                sortAsc.MergeAttribute("id", inputID);
                 sortAsc.MergeAttribute("value", model.GetSortAsc().ToString());
-                result += sortAsc.ToString(TagRenderMode.SelfClosing);
+                result.Append(sortAsc.ToString(TagRenderMode.SelfClosing));
             }
 
             if (model.FirstItemID != null)
             {
+                var inputName = html.ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldName(nameof(model.FirstItemID));
+                var inputID = TagBuilder.CreateSanitizedId(inputName, "_");
                 var firstItemID = new TagBuilder("input");
                 firstItemID.MergeAttribute("type", "hidden");
-                firstItemID.MergeAttribute("name", "FirstItemID");
+                firstItemID.MergeAttribute("name", inputName);
+                firstItemID.MergeAttribute("id", inputID);
                 firstItemID.MergeAttribute("value", model.FirstItemID.ToString());
-                result += firstItemID.ToString(TagRenderMode.SelfClosing);
+                result.Append(firstItemID.ToString(TagRenderMode.SelfClosing));
             }
 
-            return MvcHtmlString.Create(result);
+            return MvcHtmlString.Create(result.ToString());
         }
 
         /// <summary>
