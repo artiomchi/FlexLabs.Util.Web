@@ -3,7 +3,6 @@
   <PropertyGroup>
     <TargetFramework>net451</TargetFramework>
     <RootNamespace>FlexLabs.Mvc</RootNamespace>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <NoWarn>1701;1702;1705;1591</NoWarn>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\FlexLabs.Util.Mvc.xml</DocumentationFile>
     <Authors>Artiom Chilaru</Authors>
@@ -15,12 +14,13 @@ This is the ASP.NET MVC part</Description>
     <Copyright>Artiom Chilaru © 2017</Copyright>
     <PackageProjectUrl>https://github.com/artiomchi/FlexLabs.Util.Web</PackageProjectUrl>
     <RepositoryUrl>https://github.com/artiomchi/FlexLabs.Util.Web</RepositoryUrl>
-    <AssemblyVersion>2.1.0</AssemblyVersion>
-    <FileVersion>2.1.0</FileVersion>
-    <Version>2.1.0</Version>
+    <AssemblyVersion>2.1.1</AssemblyVersion>
+    <FileVersion>2.1.1</FileVersion>
+    <Version>2.1.1</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>..\..\..\Keys\FlexLabsStrongKey.pfx</AssemblyOriginatorKeyFile>
     <PostBuildEvent>..\..\..\..\..\..\signtool.exe sign /n "Artiom Chilaru" /t "http://timestamp.digicert.com" FlexLabs.Util.Mvc.dll</PostBuildEvent>

@@ -3,7 +3,6 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard1.6;net451</TargetFrameworks>
     <RootNamespace>FlexLabs.AspNetCore</RootNamespace>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <NoWarn>1701;1702;1705;1591</NoWarn>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\FlexLabs.Util.AspNetCore.xml</DocumentationFile>
     <Authors>Artiom Chilaru</Authors>
@@ -21,6 +20,7 @@ This is the AspNetMvc part</Description>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>..\..\..\Keys\FlexLabsStrongKey.pfx</AssemblyOriginatorKeyFile>
     <PostBuildEvent>..\..\..\..\..\..\signtool.exe sign /n "Artiom Chilaru" /t "http://timestamp.digicert.com" FlexLabs.Util.AspNetCore.dll</PostBuildEvent>
