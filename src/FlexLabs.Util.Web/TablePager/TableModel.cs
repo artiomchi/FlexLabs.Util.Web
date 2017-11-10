@@ -64,6 +64,9 @@ namespace FlexLabs.Web.TablePager
         public abstract TModel TranslateItem(TSource item);
 
         public void SetPageItems(IEnumerable<TSource> items, Int32? totalItemCount = null)
+            => SetPageItems(() => items, totalItemCount);
+
+        public void SetPageItems(Func<IEnumerable<TSource>> items, Int32? totalItemCount = null)
         {
             IEnumerable<TSource> dataSet;
             var pageNumber = Page ?? 1;
@@ -73,18 +76,21 @@ namespace FlexLabs.Web.TablePager
             {
                 if (!totalItemCount.HasValue)
                 {
-                    var pagedItems = items.ToPagedList(pageNumber, pageSize);
-                    totalItemCount = pagedItems.TotalItemCount;
+                    totalItemCount = items().Count();
+                    var pageResults = pageNumber > 1
+                        ? items().Skip((pageNumber - 1) * pageSize).Take(pageSize)
+                        : items().Take(pageSize);
+                    var pagedItems = new StaticPagedList<TSource>(pageResults, pageNumber, pageSize, totalItemCount.Value);
                     dataSet = pagedItems;
                 }
                 else
                 {
-                    dataSet = items.AsQueryable<TSource>().Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
+                    dataSet = items().AsQueryable<TSource>().Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
                 }
             }
             else
             {
-                dataSet = items.ToList();
+                dataSet = items().ToList();
                 pageSize = dataSet.Count() + 1;
             }
 
@@ -99,6 +105,15 @@ namespace FlexLabs.Web.TablePager
                     ? dataSet.Select(FirstID64Selector).FirstOrDefault()
                     : dataSet.Select(FirstID32Selector).FirstOrDefault();
             }
+        }
+
+        /// <summary> 
+        /// Populate the model with the externally paged dataset 
+        /// </summary> 
+        /// <param name="pagedItems">Paged dataset representing a single page of results</param> 
+        public void SetPageItems(IPagedList<TModel> pagedItems)
+        {
+            PageItems = pagedItems;
         }
 
         public Int64? GetFirstItemID(Func<TSource, Int64> idSelector)
