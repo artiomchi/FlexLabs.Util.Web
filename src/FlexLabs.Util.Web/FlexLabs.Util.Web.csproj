@@ -2,6 +2,16 @@
 
   <PropertyGroup>
     <TargetFramework>net451</TargetFramework>
+    <NoWarn>1701;1702;1705;1591</NoWarn>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\FlexLabs.Util.Web.xml</DocumentationFile>
+    <Authors>Artiom Chilaru</Authors>
+    <Company>Artiom Chilaru</Company>
+    <Product>FlexLabs Util Web</Product>
+    <Description>Building on the same principle as FlexLabs.Util, adds helper methods for MVC enabled projects!</Description>
+    <Copyright>Artiom Chilaru © 2017</Copyright>
+    <PackageProjectUrl>https://github.com/artiomchi/FlexLabs.Util.Web</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/artiomchi/FlexLabs.Util.Web</RepositoryUrl>
+    <Version>2.0.9</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,5 +22,12 @@
   <ItemGroup>
     <Reference Include="System.Web" />
   </ItemGroup>
+
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <SignAssembly>True</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\..\..\Keys\FlexLabsStrongKey.pfx</AssemblyOriginatorKeyFile>
+    <PostBuildEvent>..\..\..\..\..\..\signtool.exe sign /n "Artiom Chilaru" /t "http://timestamp.digicert.com" FlexLabs.Util.Web.dll</PostBuildEvent>
+  </PropertyGroup>
 
 </Project>
