@@ -155,6 +155,15 @@ namespace FlexLabs.Web
         }
 
         /// <summary>
+        /// Populate the model with the externally paged dataset
+        /// </summary>
+        /// <param name="pagedItems">Paged dataset representing a single page of results</param>
+        public void SetPageItems(IPagedList<TModel> pagedItems)
+        {
+            PageItems = pagedItems;
+        }
+
+        /// <summary>
         /// Get the cached ID of the first item in your result set. Has to be called before (!) the call to <see cref="SetPageItems(IEnumerable{TSource}, int?)"/>.
         /// The result of this call can be used to filter the results from the data source, so that no items after this ID are selected (assuming the query defaults to descending order by ID)
         /// </summary>
