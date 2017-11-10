@@ -109,6 +109,14 @@ namespace FlexLabs.Web
         /// <param name="items">FULL dataset to be paged</param>
         /// <param name="totalItemCount">Optional value that represents the total number of items in your dataset. If null, the TableModel will run items.Count() to get that</param>
         public void SetPageItems(IEnumerable<TSource> items, int? totalItemCount = null)
+            => SetPageItems(() => items, totalItemCount);
+
+        /// <summary>
+        /// Populate the model with the FULL dataset to be paged. Usually this will be an <see cref="IQueryable"/> set, so that paging will be performed on the server side
+        /// </summary>
+        /// <param name="itemsSource">FULL dataset to be paged</param>
+        /// <param name="totalItemCount">Optional value that represents the total number of items in your dataset. If null, the TableModel will run items.Count() to get that</param>
+        public void SetPageItems(Func<IEnumerable<TSource>> itemsSource, int? totalItemCount = null)
         {
             IEnumerable<TSource> dataSet;
             var pageNumber = Page ?? 1;
@@ -118,18 +126,18 @@ namespace FlexLabs.Web
             {
                 if (!totalItemCount.HasValue)
                 {
-                    var pagedItems = items.ToPagedList(pageNumber, pageSize);
+                    var pagedItems = itemsSource.ToPagedList(pageNumber, pageSize);
                     totalItemCount = pagedItems.TotalItemCount;
                     dataSet = pagedItems;
                 }
                 else
                 {
-                    dataSet = items.AsQueryable().Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
+                    dataSet = itemsSource().AsQueryable().Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
                 }
             }
             else
             {
-                dataSet = items.ToList();
+                dataSet = itemsSource().ToList();
                 pageSize = dataSet.Count() + 1;
             }
 
