@@ -76,16 +76,16 @@ namespace FlexLabs.Web.TablePager
             {
                 if (!totalItemCount.HasValue)
                 {
-                    totalItemCount = items().Count();
+                    totalItemCount = items().AsQueryable().Count();
                     var pageResults = pageNumber > 1
-                        ? items().Skip((pageNumber - 1) * pageSize).Take(pageSize)
-                        : items().Take(pageSize);
+                        ? items().AsQueryable().Skip((pageNumber - 1) * pageSize).Take(pageSize)
+                        : items().AsQueryable().Take(pageSize);
                     var pagedItems = new StaticPagedList<TSource>(pageResults, pageNumber, pageSize, totalItemCount.Value);
                     dataSet = pagedItems;
                 }
                 else
                 {
-                    dataSet = items().AsQueryable<TSource>().Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
+                    dataSet = items().AsQueryable().Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
                 }
             }
             else
