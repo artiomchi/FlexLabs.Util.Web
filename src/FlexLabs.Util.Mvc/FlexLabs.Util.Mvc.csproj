@@ -14,14 +14,15 @@ This is the ASP.NET MVC part</Description>
     <Copyright>Artiom Chilaru © 2017</Copyright>
     <PackageProjectUrl>https://github.com/artiomchi/FlexLabs.Util.Web</PackageProjectUrl>
     <RepositoryUrl>https://github.com/artiomchi/FlexLabs.Util.Web</RepositoryUrl>
-    <Version>2.1.1</Version>
+    <VersionPrefix>2.1.1</VersionPrefix>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)'=='Release'">
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
     <SignAssembly>True</SignAssembly>
-    <AssemblyOriginatorKeyFile>..\..\..\Keys\FlexLabsStrongKey.pfx</AssemblyOriginatorKeyFile>
-    <PostBuildEvent>..\..\..\..\..\..\signtool.exe sign /n "Artiom Chilaru" /t "http://timestamp.digicert.com" FlexLabs.Util.Mvc.dll</PostBuildEvent>
+    <AssemblyOriginatorKeyFile>..\..\certs\FlexLabsStrongKey.snk</AssemblyOriginatorKeyFile>
+    <PostBuildEvent>signtool.exe sign /n "Artiom Chilaru" /t "http://timestamp.digicert.com" FlexLabs.Util.dll</PostBuildEvent>
   </PropertyGroup>
 
   <ItemGroup>
@@ -34,6 +35,10 @@ This is the ASP.NET MVC part</Description>
 
   <ItemGroup>
     <ProjectReference Include="..\FlexLabs.Util.Web\FlexLabs.Util.Web.csproj" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(Configuration)'=='Release'">
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0-beta-62925-02" PrivateAssets="All" />
   </ItemGroup>
 
 </Project>

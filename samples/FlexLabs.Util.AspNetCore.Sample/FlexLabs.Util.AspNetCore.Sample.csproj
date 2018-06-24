@@ -3,7 +3,9 @@
   <PropertyGroup>
     <TargetFramework>net46</TargetFramework>
     <RuntimeIdentifier>win7-x86</RuntimeIdentifier>
+    <IsPackable>false</IsPackable>
   </PropertyGroup>
+  
   <ItemGroup>
     <PackageReference Include="FlexLabs.Util" Version="1.2.0" />
     <PackageReference Include="Microsoft.AspNetCore" Version="1.1.0" />
@@ -11,9 +13,11 @@
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.0" />
   </ItemGroup>
+  
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0-msbuild3-final" />
   </ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\..\src\FlexLabs.Util.AspNetCore\FlexLabs.Util.AspNetCore.csproj" />
   </ItemGroup>
