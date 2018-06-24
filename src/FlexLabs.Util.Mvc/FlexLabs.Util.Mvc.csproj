@@ -22,7 +22,7 @@ This is the ASP.NET MVC part</Description>
     <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
     <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>..\..\certs\FlexLabsStrongKey.snk</AssemblyOriginatorKeyFile>
-    <PostBuildEvent>signtool.exe sign /n "Artiom Chilaru" /t "http://timestamp.digicert.com" FlexLabs.Util.dll</PostBuildEvent>
+    <PostBuildEvent>signtool.exe sign /n "Artiom Chilaru" /t "http://timestamp.digicert.com" FlexLabs.Util.Mvc.dll</PostBuildEvent>
   </PropertyGroup>
 
   <ItemGroup>

@@ -20,7 +20,7 @@
     <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
     <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>..\..\certs\FlexLabsStrongKey.snk</AssemblyOriginatorKeyFile>
-    <PostBuildEvent>signtool.exe sign /n "Artiom Chilaru" /t "http://timestamp.digicert.com" FlexLabs.Util.dll</PostBuildEvent>
+    <PostBuildEvent>signtool.exe sign /n "Artiom Chilaru" /t "http://timestamp.digicert.com" FlexLabs.Util.Web.dll</PostBuildEvent>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(TargetFramework)'=='netstandard1.6'">
