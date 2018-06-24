@@ -21,8 +21,8 @@ namespace FlexLabs.Util.Web.Tests
 
             Assert.Equal(pageNumber, pagedListData.PageNumber);
             Assert.Equal(pages, pagedListData.PageCount);
-            Assert.Equal(true, pagedListData.CanSeeFirstPage());
-            Assert.Equal(false, pagedListData.CanSeeLastPage());
+            Assert.True(pagedListData.CanSeeFirstPage());
+            Assert.False(pagedListData.CanSeeLastPage());
             Assert.Collection(pagedListData.PageRange, Enumerable.Range(pageNumber, TableModel.DefaultPageRange).Select(PageMatcher).ToArray());
         }
 
@@ -37,8 +37,8 @@ namespace FlexLabs.Util.Web.Tests
 
             Assert.Equal(pageNumber, pagedListData.PageNumber);
             Assert.Equal(pages, pagedListData.PageCount);
-            Assert.Equal(false, pagedListData.CanSeeFirstPage());
-            Assert.Equal(false, pagedListData.CanSeeLastPage());
+            Assert.False(pagedListData.CanSeeFirstPage());
+            Assert.False(pagedListData.CanSeeLastPage());
             Assert.Collection(pagedListData.PageRange, Enumerable.Range(6, TableModel.DefaultPageRange).Select(PageMatcher).ToArray());
         }
 
@@ -53,8 +53,8 @@ namespace FlexLabs.Util.Web.Tests
 
             Assert.Equal(pageNumber, pagedListData.PageNumber);
             Assert.Equal(pages, pagedListData.PageCount);
-            Assert.Equal(false, pagedListData.CanSeeFirstPage());
-            Assert.Equal(true, pagedListData.CanSeeLastPage());
+            Assert.False(pagedListData.CanSeeFirstPage());
+            Assert.True(pagedListData.CanSeeLastPage());
             Assert.Collection(pagedListData.PageRange, Enumerable.Range(11, TableModel.DefaultPageRange).Select(PageMatcher).ToArray());
         }
     }

@@ -4,9 +4,9 @@ using Xunit;
 
 namespace FlexLabs.Util.Web.Tests
 {
-    class CustomTableModelTests
+    public class CustomTableModelTests
     {
-        [Theory]
+        [Theory(Skip = "Not ready yet")]
         [InlineData(TestEntitySorter.ID, true, true)]
         [InlineData(TestEntitySorter.ID, false, true)]
         [InlineData(TestEntitySorter.ID, true, false)]
@@ -16,11 +16,11 @@ namespace FlexLabs.Util.Web.Tests
         {
             var model = new TestEntityModel(sortBy, sortAsc, enablePaging);
             Assert.Equal(TestEntitySorter.ID, model.DefaultSortBy);
-            Assert.Equal(false, model.DefaultSortAsc);
-            Assert.Equal(false, model.PagingEnabled);
+            Assert.False(model.DefaultSortAsc);
+            Assert.False(model.PagingEnabled);
         }
 
-        [Theory]
+        [Theory(Skip = "Not ready yet")]
         [InlineData(null, null)]
         [InlineData(1, null)]
         [InlineData(null, 20)]

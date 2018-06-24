@@ -49,7 +49,7 @@ namespace FlexLabs.Util.Web.Tests
         public void TableModel_GetSortAscSet()
         {
             _model.SortAsc = false;
-            Assert.Equal(false, _model.GetSortAsc());
+            Assert.False(_model.GetSortAsc());
         }
 
         [Fact]
@@ -57,7 +57,7 @@ namespace FlexLabs.Util.Web.Tests
         {
             _model.ChangeSort = TestEntitySorter.Created.ToString();
             Assert.Equal(TestEntitySorter.Created, _model.GetSortBy());
-            Assert.Equal(true, _model.GetSortAsc());
+            Assert.True(_model.GetSortAsc());
         }
 
         [Fact]
@@ -65,7 +65,7 @@ namespace FlexLabs.Util.Web.Tests
         {
             _model.ChangeSort = "!" + TestEntitySorter.Created;
             Assert.Equal(TestEntitySorter.Created, _model.GetSortBy());
-            Assert.Equal(false, _model.GetSortAsc());
+            Assert.False(_model.GetSortAsc());
         }
 
         public static Action<TestEntity> EntityMatcher(TestEntity entity)
